@@ -48,6 +48,7 @@ export async function POST(req: NextRequest) {
       body: JSON.stringify({
         from: 'DataCrumbs <careers@datacrumbs.org>',
         to: [email],
+        cc: [process.env.CC_USER || 'people@datacrumbs.org'],
         subject: subject,
         html: htmlBody
       })
