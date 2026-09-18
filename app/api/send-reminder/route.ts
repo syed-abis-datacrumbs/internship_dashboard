@@ -67,6 +67,7 @@ export async function POST(req: NextRequest) {
     // Update candidate store record if candidateId is provided
     if (candidateId) {
       updateCandidate(candidateId, {
+        email,
         reminderSentDate: new Date().toISOString().split('T')[0]
       });
     }

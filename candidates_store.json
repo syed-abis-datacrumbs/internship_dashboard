@@ -6,7 +6,8 @@
     "university": "University of Mianwali",
     "status": "ACCEPTED",
     "offerSentDate": "2026-09-15",
-    "id": "cand-1789655037330-7c9z7"
+    "id": "cand-1789655037330-7c9z7",
+    "reminderSentDate": "2026-09-18"
   },
   {
     "name": "Asmat Jabeen",
@@ -40,7 +41,8 @@
     "university": "University of Mianwali",
     "status": "ACCEPTED",
     "offerSentDate": "2026-09-15",
-    "id": "cand-1789655037247-unymh"
+    "id": "cand-1789655037247-unymh",
+    "reminderSentDate": "2026-09-18"
   },
   {
     "name": "Zain",

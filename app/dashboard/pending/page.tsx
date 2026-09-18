@@ -59,6 +59,15 @@ export default function PendingCandidatesPage() {
 
   useEffect(() => {
     fetchCandidates();
+    // Load sent reminders from localStorage for persistence across reloads
+    try {
+      const stored = JSON.parse(localStorage.getItem('sent_reminders') || '{}');
+      if (stored && typeof stored === 'object') {
+        setSentMap(stored);
+      }
+    } catch (e) {
+      console.error('Error reading sent_reminders from localStorage:', e);
+    }
   }, []);
 
   const handleLogout = async () => {
@@ -82,7 +91,20 @@ export default function PendingCandidatesPage() {
 
       const data = await res.json();
       if (data.success) {
+        const today = new Date().toISOString().split('T')[0];
         setSentMap((prev) => ({ ...prev, [cand.id]: true }));
+        setCandidates((prev) =>
+          prev.map((c) => (c.id === cand.id ? { ...c, reminderSentDate: today } : c))
+        );
+
+        // Save to localStorage so it persists even after refreshing the page
+        try {
+          const stored = JSON.parse(localStorage.getItem('sent_reminders') || '{}');
+          stored[cand.id] = true;
+          localStorage.setItem('sent_reminders', JSON.stringify(stored));
+        } catch (e) {
+          console.error('Error saving to localStorage:', e);
+        }
       } else {
         alert(`Failed to send reminder: ${data.message || 'Unknown error'}`);
       }
@@ -146,9 +168,9 @@ export default function PendingCandidatesPage() {
   };
 
   return (
-    <div className="min-h-screen text-slate-100 font-sans pb-16 relative bg-slate-950">
-      {/* Background Glow */}
-      <div className="fixed inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-900/10 via-slate-950 to-slate-950" />
+    <div className="min-h-screen text-slate-100 font-sans pb-16 relative">
+      {/* Background Glow Overlay - translucent to show dashboard.png background image */}
+      <div className="fixed inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-900/15 via-slate-950/80 to-slate-950/95" />
 
       {/* Header Bar */}
       <header className="sticky top-0 z-30 bg-slate-900/60 backdrop-blur-xl border-b border-slate-800/80 shadow-lg">
