@@ -46,7 +46,7 @@ export async function POST(req: NextRequest) {
         'Authorization': `Bearer ${resendApiKey}`
       },
       body: JSON.stringify({
-        from: 'DataCrumbs <people@datacrumbs.org>',
+        from: 'DataCrumbs <careers@datacrumbs.org>',
         to: [email],
         cc: ['people@datacrumbs.org'],
         subject: subject,
