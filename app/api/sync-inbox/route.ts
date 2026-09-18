@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 import tls from 'tls';
-import email from 'email-reply-parser'; // Or inline raw email parser
 
 interface SyncedEmail {
   from: string;
