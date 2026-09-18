@@ -21,7 +21,8 @@ import {
   GraduationCap,
   Mail,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  Zap
 } from 'lucide-react';
 import { Candidate, OfferStatus } from '@/lib/types';
 
@@ -32,33 +33,17 @@ export default function DashboardPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('ALL');
   const [domainFilter, setDomainFilter] = useState<string>('ALL');
-  const [batchProcessing, setBatchProcessing] = useState(false);
 
   // Pagination State
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
-
-  // Batch Analyze Existing Replies
-  const handleBatchAnalyze = async () => {
-    setBatchProcessing(true);
-    try {
-      const res = await fetch('/api/candidates/batch-analyze', { method: 'POST' });
-      const data = await res.json();
-      if (data.success && data.candidates) {
-        setCandidates(data.candidates);
-      }
-    } catch (err) {
-      console.error('Batch analysis failed', err);
-    } finally {
-      setBatchProcessing(false);
-    }
-  };
-
-  // Analyzer Modal State
+  // UI Control States
   const [selectedCandidate, setSelectedCandidate] = useState<Candidate | null>(null);
   const [emailText, setEmailText] = useState('');
   const [analyzing, setAnalyzing] = useState(false);
   const [analysisError, setAnalysisError] = useState('');
+  const [batchProcessing, setBatchProcessing] = useState(false);
+  const [syncingInbox, setSyncingInbox] = useState(false);
 
   // Add Candidate Modal State
   const [showAddModal, setShowAddModal] = useState(false);
@@ -69,6 +54,47 @@ export default function DashboardPage() {
     university: '',
     score: 90
   });
+
+  // Batch Analyze Existing Replies
+  const handleBatchAnalyze = async () => {
+    setBatchProcessing(true);
+    try {
+      const unanalyzed = candidates.filter(
+        (c) => c.emailReply && c.emailReply.trim() && !c.aiAnalysis
+      );
+      for (const cand of unanalyzed) {
+        await fetch('/api/analyze', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ candidateId: cand.id, emailText: cand.emailReply })
+        });
+      }
+      fetchCandidates();
+    } catch (err) {
+      console.error('Batch analysis error', err);
+    } finally {
+      setBatchProcessing(false);
+    }
+  };
+
+  const handleSyncInbox = async () => {
+    setSyncingInbox(true);
+    try {
+      const res = await fetch('/api/sync-inbox', { method: 'POST' });
+      const data = await res.json();
+      if (data.success) {
+        alert('⚡ Titan Inbox POP3 sync completed! Incoming candidate emails imported.');
+        fetchCandidates();
+      } else {
+        alert(`Inbox sync message: ${data.message || 'Unknown error'}`);
+      }
+    } catch (err) {
+      console.error('Error syncing inbox:', err);
+      alert('Failed to run Titan Inbox sync.');
+    } finally {
+      setSyncingInbox(false);
+    }
+  };
 
   // Fetch candidates from API
   const fetchCandidates = async () => {
@@ -250,7 +276,25 @@ export default function DashboardPage() {
             </div>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
+            <button
+              onClick={handleSyncInbox}
+              disabled={syncingInbox}
+              className="flex items-center gap-1.5 text-xs font-semibold bg-amber-600 hover:bg-amber-500 text-white px-3.5 py-2 rounded-xl transition-all shadow-md shadow-amber-900/30 border border-amber-500/30 disabled:opacity-50"
+              title="Execute POP3 sync script (sync_titan_inbox_pop3.py) to fetch emails from Titan Mail"
+            >
+              {syncingInbox ? (
+                <>
+                  <div className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  Syncing Inbox...
+                </>
+              ) : (
+                <>
+                  <Zap className="w-4 h-4 text-amber-200" /> Sync Titan Inbox (POP3)
+                </>
+              )}
+            </button>
+
             <button
               onClick={handleBatchAnalyze}
               disabled={batchProcessing}
