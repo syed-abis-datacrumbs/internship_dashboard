@@ -40,7 +40,11 @@ export default function PendingCandidatesPage() {
       const res = await fetch('/api/candidates');
       if (res.ok) {
         const data = await res.json();
-        setCandidates(data);
+        if (data.success && Array.isArray(data.candidates)) {
+          setCandidates(data.candidates);
+        } else if (Array.isArray(data)) {
+          setCandidates(data);
+        }
       }
     } catch (err) {
       console.error('Failed to load candidate records:', err);
@@ -59,7 +63,8 @@ export default function PendingCandidatesPage() {
   };
 
   // Filter candidates to ONLY show those awaiting responses (no email reply text)
-  const pendingCandidates = candidates.filter((c) => !c.emailReply || !c.emailReply.trim());
+  const candList = Array.isArray(candidates) ? candidates : [];
+  const pendingCandidates = candList.filter((c) => !c.emailReply || !c.emailReply.trim());
 
   const domains = Array.from(new Set(pendingCandidates.map((c) => c.domain)));
 
@@ -193,14 +198,14 @@ export default function PendingCandidatesPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-slate-400 text-xs font-semibold uppercase tracking-wider">Total Offers Sent</p>
-                <h3 className="text-3xl font-extrabold text-white mt-1">{candidates.length}</h3>
+                <h3 className="text-3xl font-extrabold text-white mt-1">{candList.length}</h3>
               </div>
               <div className="p-3 bg-slate-800/60 border border-slate-700/80 rounded-xl text-slate-300">
                 <FileText className="w-6 h-6" />
               </div>
             </div>
             <p className="text-[11px] text-slate-400 mt-3 font-mono">
-              Pending Rate: {candidates.length > 0 ? Math.round((pendingCandidates.length / candidates.length) * 100) : 0}%
+              Pending Rate: {candList.length > 0 ? Math.round((pendingCandidates.length / candList.length) * 100) : 0}%
             </p>
           </div>
 
