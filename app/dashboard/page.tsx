@@ -768,163 +768,177 @@ export default function DashboardPage() {
       {/* Gemini Email Reply Analyzer Modal with AI Response Composer */}
       {selectedCandidate && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-          <div className="bg-slate-900 border border-slate-800 rounded-3xl max-w-5xl w-full p-6 shadow-2xl relative overflow-hidden max-h-[92vh] flex flex-col">
+          <div className="bg-[#0b0f19] border border-slate-800/90 rounded-3xl max-w-5xl w-full p-6 shadow-2xl relative overflow-hidden max-h-[92vh] flex flex-col">
             {/* Modal Header */}
-            <div className="flex items-center justify-between pb-4 border-b border-slate-800 shrink-0">
+            <div className="flex items-center justify-between pb-4 border-b border-slate-800/80 shrink-0">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-emerald-600/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
-                  <Brain className="w-5 h-5" />
+                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 relative">
+                  <Brain className="w-5 h-5 text-emerald-400" />
+                  <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-emerald-400 rounded-full border-2 border-[#0b0f19] shadow-sm shadow-emerald-400" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-white flex items-center gap-2">
-                    Candidate Email Reply & AI Response Draft
-                  </h3>
-                  <p className="text-xs text-slate-400">
-                    Candidate: <span className="text-emerald-300 font-semibold">{selectedCandidate.name}</span> ({selectedCandidate.email}) • <span className="text-slate-300">{selectedCandidate.domain}</span>
+                  <div className="flex items-center gap-2">
+                    <h3 className="text-base font-bold text-white">
+                      Candidate Email Reply & AI Response Draft
+                    </h3>
+                    <span className="text-[10px] font-semibold text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-2.5 py-0.5 rounded-full flex items-center gap-1.5 uppercase">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" /> Live Assistant
+                    </span>
+                  </div>
+                  <p className="text-xs text-slate-400 mt-0.5 flex items-center gap-2 flex-wrap">
+                    Candidate: <span className="text-emerald-400 font-bold">{selectedCandidate.name}</span>
+                    <span className="text-slate-400">({selectedCandidate.email})</span>
+                    <span className="text-slate-600">•</span>
+                    <span className="bg-slate-800/80 text-slate-300 text-[11px] px-2.5 py-0.5 rounded-md border border-slate-700/60 font-medium">
+                      Role: {selectedCandidate.domain}
+                    </span>
                   </p>
                 </div>
               </div>
-              <button
-                onClick={() => setSelectedCandidate(null)}
-                className="text-slate-400 hover:text-white text-lg p-2 rounded-xl bg-slate-800"
-              >
-                ✕
-              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  className="p-2 text-slate-400 hover:text-white bg-slate-800/60 hover:bg-slate-800 rounded-xl border border-slate-700/50 transition-all"
+                  title="History"
+                >
+                  <Clock className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={() => setSelectedCandidate(null)}
+                  className="p-2 text-slate-400 hover:text-white bg-slate-800/60 hover:bg-slate-800 rounded-xl border border-slate-700/50 transition-all text-sm"
+                  title="Close Modal"
+                >
+                  ✕
+                </button>
+              </div>
             </div>
 
             {/* Modal Body: Dual Pane Layout */}
             <div className="mt-5 grid grid-cols-1 lg:grid-cols-2 gap-6 overflow-y-auto flex-1 pr-1">
               {/* LEFT COLUMN: Candidate Email & AI Classification */}
               <div className="space-y-4 flex flex-col justify-between">
-                <div>
-                  <div className="flex items-center justify-between mb-2">
-                    <label className="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
-                      <MessageSquare className="w-4 h-4 text-emerald-400" />
+                {/* Candidate Email Reply Box */}
+                <div className="bg-slate-950/70 border border-slate-800/90 rounded-2xl p-4.5 space-y-3">
+                  <div className="flex items-center justify-between pb-2 border-b border-slate-800/80">
+                    <span className="text-[11px] font-bold text-slate-300 tracking-wider flex items-center gap-2 uppercase">
+                      <Mail className="w-3.5 h-3.5 text-emerald-400" />
                       Candidate Email Reply Content
-                    </label>
+                    </span>
+                    <span className="text-[11px] text-slate-500 flex items-center gap-1 font-mono">
+                      <Clock className="w-3 h-3 text-slate-500" /> Today at 10:24 AM
+                    </span>
                   </div>
                   <textarea
                     value={emailText}
                     onChange={(e) => setEmailText(e.target.value)}
-                    rows={8}
+                    rows={9}
                     placeholder="Candidate email reply text..."
-                    className="w-full bg-slate-950/90 border border-slate-800 rounded-2xl p-4 text-xs leading-relaxed text-slate-100 placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 font-sans min-h-[190px]"
+                    className="w-full bg-slate-900/90 border border-slate-800/80 rounded-xl p-4 text-xs leading-relaxed text-slate-200 placeholder-slate-600 focus:outline-none focus:ring-1 focus:ring-emerald-500/50 font-sans min-h-[220px]"
                   />
                 </div>
 
+                {/* AI Classification Card */}
                 {selectedCandidate.aiAnalysis && (
-                  <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-4 space-y-3">
-                    <div className="flex items-center justify-between pb-2.5 border-b border-slate-800">
-                      <span className="text-[11px] font-bold text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
-                        <Brain className="w-3.5 h-3.5 text-emerald-400" /> AI Classification
+                  <div className="bg-slate-950/70 border border-slate-800/90 rounded-2xl p-4 space-y-3.5">
+                    <div className="flex items-center justify-between pb-2.5 border-b border-slate-800/80">
+                      <span className="text-[11px] font-bold text-emerald-400 tracking-wider flex items-center gap-1.5 uppercase">
+                        <Sparkles className="w-3.5 h-3.5 text-emerald-400" /> AI CLASSIFICATION
                       </span>
                       <span
-                        className={`px-2.5 py-0.5 rounded-full text-[11px] font-bold ${
+                        className={`px-3 py-1 rounded-full text-[11px] font-bold flex items-center gap-1.5 ${
                           selectedCandidate.aiAnalysis.intent === 'ACCEPTED'
-                            ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40'
+                            ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/40'
                             : selectedCandidate.aiAnalysis.intent === 'DECLINED'
-                            ? 'bg-rose-500/20 text-rose-400 border border-rose-500/40'
-                            : 'bg-amber-500/20 text-amber-400 border border-amber-500/40'
+                            ? 'bg-rose-500/10 text-rose-400 border border-rose-500/40'
+                            : 'bg-amber-500/10 text-amber-400 border border-amber-500/40'
                         }`}
                       >
-                        Intent: {selectedCandidate.aiAnalysis.intent}
+                        <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+                        Intent: {selectedCandidate.aiAnalysis.intent} / INQUIRY
                       </span>
                     </div>
 
-                    <div>
-                      <h4 className="text-[11px] font-medium text-slate-400 mb-1">Executive Summary</h4>
-                      <p className="text-xs font-medium text-slate-100 bg-slate-900 p-3 rounded-xl border border-slate-800 leading-relaxed">
+                    <div className="bg-slate-900/90 border border-slate-800/80 rounded-xl p-3.5 space-y-1.5">
+                      <div className="flex items-center justify-between text-[10px] text-slate-400 font-semibold uppercase tracking-wider">
+                        <span>Executive Summary</span>
+                        <span className="text-slate-500 font-mono">AUTO-GENERATED</span>
+                      </div>
+                      <p className="text-xs font-medium text-slate-100 leading-relaxed">
                         {selectedCandidate.aiAnalysis.summary}
                       </p>
                     </div>
 
-                    <div className="pt-2 flex items-center justify-between text-[11px] text-slate-400 border-t border-slate-800">
-                      <span>Recommended Status: <strong className="text-white">{selectedCandidate.aiAnalysis.recommendedStatus}</strong></span>
-                      <span>Confidence: <strong className="text-emerald-400">{Math.round(selectedCandidate.aiAnalysis.confidence * 100)}%</strong></span>
+                    <div className="pt-2 flex items-center justify-between text-[11px] text-slate-400 border-t border-slate-800/80">
+                      <span>
+                        Recommended Status:{' '}
+                        <span className="bg-amber-500/10 text-amber-400 border border-amber-500/30 px-2.5 py-0.5 rounded text-[11px] font-bold ml-1.5">
+                          {selectedCandidate.aiAnalysis.recommendedStatus}
+                        </span>
+                      </span>
+                      <span className="flex items-center gap-1">
+                        Confidence:{' '}
+                        <strong className="text-emerald-400 font-bold flex items-center gap-1">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block" />
+                          {Math.round(selectedCandidate.aiAnalysis.confidence * 100)}%
+                        </strong>
+                      </span>
                     </div>
                   </div>
                 )}
               </div>
 
               {/* RIGHT COLUMN: AI Response Draft Composer */}
-              <div className="bg-slate-950/90 border border-slate-800 rounded-2xl p-4 flex flex-col justify-between space-y-3">
-                <div>
-                  <div className="flex items-center justify-between pb-3 border-b border-slate-800 mb-3">
-                    <label className="text-xs font-bold text-emerald-400 flex items-center gap-1.5 uppercase tracking-wider">
-                      <Sparkles className="w-4 h-4 text-emerald-400" /> AI Response Draft
+              <div className="bg-slate-950/70 border border-slate-800/90 rounded-2xl p-4 flex flex-col justify-between space-y-3">
+                <div className="flex flex-col flex-1 min-h-0 space-y-3">
+                  <div className="flex items-center justify-between pb-3 border-b border-slate-800/80 shrink-0">
+                    <label className="text-[11px] font-bold text-emerald-400 flex items-center gap-1.5 uppercase tracking-wider">
+                      <Sparkles className="w-3.5 h-3.5 text-emerald-400" /> AI RESPONSE DRAFT
                     </label>
                     <button
                       onClick={() => handleGenerateDraft(selectedCandidate, draftTone)}
                       disabled={generatingDraft}
-                      className="text-[11px] text-emerald-400 hover:text-emerald-300 font-semibold flex items-center gap-1 bg-emerald-500/10 px-2.5 py-1 rounded-lg border border-emerald-500/30"
+                      className="text-[11px] text-emerald-400 hover:text-white font-semibold flex items-center gap-1.5 bg-emerald-500/10 hover:bg-emerald-500/20 px-3 py-1.5 rounded-xl border border-emerald-500/30 transition-all"
                     >
-                      {generatingDraft ? (
-                        <div className="w-3 h-3 border-2 border-emerald-400/30 border-t-emerald-400 rounded-full animate-spin" />
-                      ) : (
-                        <RefreshCw className="w-3 h-3" />
-                      )}
+                      <RefreshCw className={`w-3.5 h-3.5 ${generatingDraft ? 'animate-spin' : ''}`} />
                       Re-generate Draft
                     </button>
                   </div>
 
-                  {/* Tone Strategy Toggles */}
-                  <div className="flex items-center gap-1.5 mb-3 overflow-x-auto pb-1">
-                    <button
-                      onClick={() => handleGenerateDraft(selectedCandidate, 'welcome')}
-                      className={`text-[11px] font-semibold px-2.5 py-1 rounded-lg border transition-all ${
-                        draftTone === 'welcome'
-                          ? 'bg-emerald-600 text-white border-emerald-500'
-                          : 'bg-slate-900 text-slate-400 border-slate-800 hover:text-white'
-                      }`}
-                    >
-                      🟢 Welcome & Next Steps
-                    </button>
-                    <button
-                      onClick={() => handleGenerateDraft(selectedCandidate, 'answer')}
-                      className={`text-[11px] font-semibold px-2.5 py-1 rounded-lg border transition-all ${
-                        draftTone === 'answer'
-                          ? 'bg-amber-600 text-white border-amber-500'
-                          : 'bg-slate-900 text-slate-400 border-slate-800 hover:text-white'
-                      }`}
-                    >
-                      🟡 Answer Details
-                    </button>
-                    <button
-                      onClick={() => handleGenerateDraft(selectedCandidate, 'decline')}
-                      className={`text-[11px] font-semibold px-2.5 py-1 rounded-lg border transition-all ${
-                        draftTone === 'decline'
-                          ? 'bg-rose-600 text-white border-rose-500'
-                          : 'bg-slate-900 text-slate-400 border-slate-800 hover:text-white'
-                      }`}
-                    >
-                      🔵 Polite Acknowledgement
-                    </button>
-                  </div>
+                  {/* Editor Container */}
+                  <div className="bg-slate-900/90 border border-slate-800/80 rounded-xl p-4 flex-1 flex flex-col justify-between space-y-2 focus-within:border-emerald-500/50 transition-all min-h-0">
+                    <textarea
+                      value={draftText}
+                      onChange={(e) => setDraftText(e.target.value)}
+                      placeholder={generatingDraft ? "OpenAI is drafting response..." : "AI generated response draft..."}
+                      className="w-full flex-1 bg-transparent text-xs text-slate-100 placeholder-slate-600 focus:outline-none font-sans leading-relaxed min-h-[220px] resize-none"
+                    />
 
-                  {/* Editable Response Textarea */}
-                  <textarea
-                    value={draftText}
-                    onChange={(e) => setDraftText(e.target.value)}
-                    rows={10}
-                    placeholder={generatingDraft ? "OpenAI is drafting response..." : "AI generated response draft..."}
-                    className="w-full bg-slate-900 border border-slate-800 rounded-xl p-3.5 text-xs text-slate-100 placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 font-sans leading-relaxed min-h-[220px]"
-                  />
+                    {/* Editor Footer Status Bar */}
+                    <div className="flex items-center justify-between pt-2 border-t border-slate-800/60 text-[11px] text-slate-400 font-mono shrink-0">
+                      <span className="flex items-center gap-1.5 text-slate-400 font-sans">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" /> Auto-saved draft
+                      </span>
+                      <span>
+                        Characters: <strong className="text-slate-200 font-bold">{draftText.length}</strong> • Tokens:{' '}
+                        <strong className="text-slate-200 font-bold">{Math.ceil(draftText.length / 4)}</strong>
+                      </span>
+                    </div>
+                  </div>
                 </div>
 
-                {/* Bottom Actions Bar */}
-                <div className="flex items-center justify-between pt-3 border-t border-slate-800 gap-3">
+                {/* Bottom Action Buttons Bar */}
+                <div className="flex items-center justify-between pt-3 border-t border-slate-800/80 gap-3 shrink-0">
                   <button
                     onClick={handleCopyDraft}
                     disabled={!draftText.trim()}
-                    className="flex-1 bg-slate-900 hover:bg-slate-800 text-slate-200 text-xs font-semibold py-2.5 rounded-xl border border-slate-800 flex items-center justify-center gap-1.5 disabled:opacity-50 transition-all"
+                    className="flex-1 bg-slate-900/90 hover:bg-slate-800 text-slate-200 text-xs font-semibold py-3 px-4 rounded-2xl border border-slate-800 flex items-center justify-center gap-2 disabled:opacity-50 transition-all shadow-sm"
                   >
                     {copiedToast ? (
                       <>
-                        <Check className="w-3.5 h-3.5 text-emerald-400" /> Copied to Clipboard!
+                        <Check className="w-4 h-4 text-emerald-400" /> Copied to Clipboard!
                       </>
                     ) : (
                       <>
-                        <Copy className="w-3.5 h-3.5 text-slate-400" /> Copy Draft Text
+                        <Copy className="w-4 h-4 text-slate-400" /> Copy Draft Text
                       </>
                     )}
                   </button>
@@ -932,16 +946,19 @@ export default function DashboardPage() {
                   <button
                     onClick={handleSendReply}
                     disabled={sendingReply || !draftText.trim()}
-                    className="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold py-2.5 rounded-xl shadow-lg shadow-emerald-900/30 border border-emerald-500/30 flex items-center justify-center gap-1.5 disabled:opacity-50 transition-all"
+                    className="flex-1 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs py-3 px-4 rounded-2xl shadow-xl shadow-emerald-500/20 border border-emerald-400 flex items-center justify-center gap-2 disabled:opacity-50 transition-all"
                   >
                     {sendingReply ? (
                       <>
-                        <div className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                        <div className="w-4 h-4 border-2 border-slate-950/30 border-t-slate-950 rounded-full animate-spin" />
                         Sending Email...
                       </>
                     ) : (
                       <>
-                        <Send className="w-3.5 h-3.5 text-white" /> Send Email Response
+                        <Send className="w-4 h-4 text-slate-950" /> Send Email
+                        <span className="bg-slate-950/20 text-slate-950 text-[10px] font-mono px-1.5 py-0.5 rounded border border-slate-950/20 ml-1">
+                          ⌘↵
+                        </span>
                       </>
                     )}
                   </button>
