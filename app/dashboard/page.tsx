@@ -197,10 +197,10 @@ export default function DashboardPage() {
   // Calculated Stats
   const totalOffers = candidates.length;
   const emailsReceived = candidates.filter((c) => Boolean(c.emailReply && c.emailReply.trim())).length;
-  const acceptedOffers = candidates.filter((c) => c.status === 'ACCEPTED' && Boolean(c.emailReply && c.emailReply.trim())).length;
-  const declinedOffers = candidates.filter((c) => c.status === 'DECLINED' && Boolean(c.emailReply && c.emailReply.trim())).length;
-  const reviewOffers = candidates.filter((c) => c.status === 'NEEDS_REVIEW' && Boolean(c.emailReply && c.emailReply.trim())).length;
-  const pendingOffers = totalOffers - emailsReceived;
+  const acceptedOffers = candidates.filter((c) => c.status === 'ACCEPTED').length;
+  const declinedOffers = candidates.filter((c) => c.status === 'DECLINED').length;
+  const reviewOffers = candidates.filter((c) => c.status === 'NEEDS_REVIEW').length;
+  const pendingOffers = candidates.filter((c) => !c.emailReply || !c.emailReply.trim()).length;
   const acceptanceRate = emailsReceived > 0 ? Math.round((acceptedOffers / emailsReceived) * 100) : 0;
 
   // Filtered List
