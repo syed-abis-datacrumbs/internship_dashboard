@@ -18,25 +18,23 @@ export async function POST(req: NextRequest) {
     const subject = `Reminder: Internship Offer Letter – DataCrumbs ${domain || 'Program'}`;
 
     const htmlBody = `
-      <div style="font-family: Arial, sans-serif; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; rounded: 10px;">
-        <h2 style="color: #059669;">DataCrumbs Internship Offer Reminder</h2>
-        <p>Dear <strong>${name}</strong>,</p>
-        <p>We hope this email finds you well.</p>
-        <p>This is a friendly reminder regarding your official internship offer for the <strong>${domain || 'DataCrumbs Internship Program'}</strong>. We recently sent over your offer details and are looking forward to receiving your response.</p>
+      <div style="font-family: Arial, sans-serif; color: #333; max-width: 600px; margin: 0 auto; padding: 24px; border: 1px solid #e2e8f0; border-radius: 12px; background-color: #ffffff;">
+        <p style="font-size: 15px;">Dear <strong>${name}</strong>,</p>
+        <p style="font-size: 15px; line-height: 1.6;">This is a friendly reminder regarding the internship offer recently sent to you for the <strong>DataCrumbs ${domain || 'ChangeMaker Program'}</strong>.</p>
         
-        <div style="background-color: #f0fdf4; border-left: 4px solid #10b981; padding: 15px; margin: 20px 0;">
-          <h4 style="margin: 0 0 10px 0; color: #065f46;">Next Steps:</h4>
-          <ol style="margin: 0; padding-left: 20px; color: #047857;">
-            <li>Review the offer letter details sent to this email address.</li>
-            <li>Reply to this email directly with your confirmation or signed offer letter copy.</li>
-            <li>If you have any questions or require clarifications, reply to us directly.</li>
-          </ol>
+        <div style="background-color: #f8fafc; border-left: 4px solid #059669; padding: 16px; margin: 20px 0; border-radius: 4px;">
+          <h4 style="margin: 0 0 10px 0; color: #0f172a; font-size: 15px;">Next Steps</h4>
+          <ul style="margin: 0; padding-left: 20px; color: #334155; line-height: 1.6;">
+            <li>Review the internship offer letter sent to your email.</li>
+            <li>Reply to this email with your confirmation of acceptance or the signed offer letter.</li>
+            <li>If you have any questions or need clarification regarding the offer, please feel free to reply to this email.</li>
+          </ul>
         </div>
 
-        <p>Please respond at your earliest convenience to reserve your internship slot.</p>
+        <p style="font-size: 15px; line-height: 1.6;">We look forward to receiving your confirmation.</p>
         <br/>
-        <p style="margin-bottom: 0;">Warm regards,</p>
-        <p style="margin-top: 5px;"><strong>Team DataCrumbs</strong><br/><span style="font-size: 12px; color: #666;">Empowering Future Innovators</span></p>
+        <p style="margin-bottom: 4px; font-size: 15px;">Warm regards,</p>
+        <p style="margin-top: 0; font-size: 15px; font-weight: bold; color: #059669;">Team DataCrumbs</p>
       </div>
     `;
 
