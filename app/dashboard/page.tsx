@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import {
   Sparkles,
   Users,
@@ -286,6 +287,23 @@ export default function DashboardPage() {
 
       {/* Main Container */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 space-y-8 relative z-10">
+        {/* Navigation Tabs */}
+        <div className="flex items-center gap-3 border-b border-slate-800/80 pb-4">
+          <Link
+            href="/dashboard"
+            className="px-4 py-2 rounded-xl text-xs font-semibold bg-emerald-600/20 text-emerald-300 border border-emerald-500/40 shadow-sm flex items-center gap-2"
+          >
+            <FileText className="w-4 h-4 text-emerald-400" /> Dashboard Overview ({candidates.length})
+          </Link>
+
+          <Link
+            href="/dashboard/pending"
+            className="px-4 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-white hover:bg-slate-900 border border-transparent transition-all flex items-center gap-2"
+          >
+            <Clock className="w-4 h-4 text-amber-400" /> Awaiting Responses ({pendingOffers})
+          </Link>
+        </div>
+
         {/* KPI Cards Row (Glassmorphic) */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
           {/* 1. Total Offers Sent Card */}
