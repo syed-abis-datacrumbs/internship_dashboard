@@ -34,6 +34,10 @@ export default function PendingCandidatesPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
 
+  // Reminder Sending State
+  const [sendingMap, setSendingMap] = useState<Record<string, boolean>>({});
+  const [sentMap, setSentMap] = useState<Record<string, boolean>>({});
+
   const fetchCandidates = async () => {
     setLoading(true);
     try {
@@ -60,6 +64,34 @@ export default function PendingCandidatesPage() {
   const handleLogout = async () => {
     await fetch('/api/auth/logout', { method: 'POST' });
     router.push('/login');
+  };
+
+  const handleSendReminder = async (cand: Candidate) => {
+    setSendingMap((prev) => ({ ...prev, [cand.id]: true }));
+    try {
+      const res = await fetch('/api/send-reminder', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          candidateId: cand.id,
+          email: cand.email,
+          name: cand.name,
+          domain: cand.domain
+        })
+      });
+
+      const data = await res.json();
+      if (data.success) {
+        setSentMap((prev) => ({ ...prev, [cand.id]: true }));
+      } else {
+        alert(`Failed to send reminder: ${data.message || 'Unknown error'}`);
+      }
+    } catch (err) {
+      console.error('Error sending reminder:', err);
+      alert('Failed to send reminder email due to network error.');
+    } finally {
+      setSendingMap((prev) => ({ ...prev, [cand.id]: false }));
+    }
   };
 
   // Filter candidates to ONLY show those awaiting responses (no email reply text)
@@ -281,6 +313,7 @@ export default function PendingCandidatesPage() {
                     <th className="py-4 px-5">Domain & University</th>
                     <th className="py-4 px-5">Offer Sent Date</th>
                     <th className="py-4 px-5">Reply Status</th>
+                    <th className="py-4 px-5 text-right">Actions / Send Reminder</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-800/60">
@@ -318,6 +351,32 @@ export default function PendingCandidatesPage() {
                         <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/10 border border-amber-500/30 text-amber-400">
                           <Clock className="w-3.5 h-3.5" /> Awaiting Candidate Reply
                         </span>
+                      </td>
+
+                      {/* Action / Send Reminder Button */}
+                      <td className="py-4 px-5 text-right">
+                        {sentMap[cand.id] || cand.reminderSentDate ? (
+                          <span className="inline-flex items-center gap-1 text-xs font-bold text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-3 py-1 rounded-xl">
+                            <CheckCircle2 className="w-3.5 h-3.5" /> Reminder Sent
+                          </span>
+                        ) : (
+                          <button
+                            onClick={() => handleSendReminder(cand)}
+                            disabled={sendingMap[cand.id]}
+                            className="inline-flex items-center gap-1.5 text-xs font-semibold bg-amber-600/20 hover:bg-amber-600 text-amber-300 hover:text-white border border-amber-500/40 px-3 py-1.5 rounded-xl transition-all shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                          >
+                            {sendingMap[cand.id] ? (
+                              <>
+                                <div className="w-3.5 h-3.5 border-2 border-amber-300 border-t-transparent rounded-full animate-spin" />
+                                Sending...
+                              </>
+                            ) : (
+                              <>
+                                <Send className="w-3.5 h-3.5" /> Send Reminder
+                              </>
+                            )}
+                          </button>
+                        )}
                       </td>
                     </tr>
                   ))}

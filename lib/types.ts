@@ -19,6 +19,7 @@ export interface Candidate {
   status: OfferStatus;
   offerSentDate: string;
   responseDate?: string;
+  reminderSentDate?: string;
   emailReply?: string;
   aiAnalysis?: AIAnalysis;
 }
