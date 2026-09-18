@@ -22,7 +22,11 @@ import {
   Mail,
   ChevronLeft,
   ChevronRight,
-  Zap
+  Zap,
+  Copy,
+  Send,
+  Check,
+  Wand2
 } from 'lucide-react';
 import { Candidate, OfferStatus } from '@/lib/types';
 
@@ -44,6 +48,13 @@ export default function DashboardPage() {
   const [analysisError, setAnalysisError] = useState('');
   const [batchProcessing, setBatchProcessing] = useState(false);
   const [syncingInbox, setSyncingInbox] = useState(false);
+
+  // AI Draft Response States
+  const [draftText, setDraftText] = useState('');
+  const [generatingDraft, setGeneratingDraft] = useState(false);
+  const [sendingReply, setSendingReply] = useState(false);
+  const [copiedToast, setCopiedToast] = useState(false);
+  const [draftTone, setDraftTone] = useState<'auto' | 'welcome' | 'answer' | 'decline'>('auto');
 
   // Add Candidate Modal State
   const [showAddModal, setShowAddModal] = useState(false);
@@ -122,11 +133,76 @@ export default function DashboardPage() {
     router.refresh();
   };
 
+  // Trigger AI Draft response generation
+  const handleGenerateDraft = async (cand: Candidate, tonePreset = 'auto') => {
+    setGeneratingDraft(true);
+    setDraftTone(tonePreset as any);
+    try {
+      const res = await fetch('/api/draft-response', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          candidateName: cand.name,
+          candidateEmail: cand.email,
+          domain: cand.domain,
+          emailContent: cand.emailReply || emailText,
+          intent: cand.aiAnalysis?.intent || 'UNCERTAIN',
+          summary: cand.aiAnalysis?.summary || '',
+          tonePreset
+        })
+      });
+      const data = await res.json();
+      if (data.success && data.draftResponse) {
+        setDraftText(data.draftResponse);
+      }
+    } catch (err) {
+      console.error('Error generating AI draft:', err);
+    } finally {
+      setGeneratingDraft(false);
+    }
+  };
+
+  const handleSendReply = async () => {
+    if (!selectedCandidate || !draftText.trim()) return;
+    setSendingReply(true);
+    try {
+      const res = await fetch('/api/send-reply', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          toEmail: selectedCandidate.email,
+          candidateName: selectedCandidate.name,
+          subject: `Re: DataCrumbs ChangeMaker Internship Program - ${selectedCandidate.name}`,
+          replyText: draftText
+        })
+      });
+      const data = await res.json();
+      if (data.success) {
+        alert(`✅ Reply email sent to ${selectedCandidate.email} (CC: people@datacrumbs.org)!`);
+      } else {
+        alert(`Failed to send email: ${data.message}`);
+      }
+    } catch (err) {
+      console.error('Error sending reply:', err);
+      alert('Error sending email reply.');
+    } finally {
+      setSendingReply(false);
+    }
+  };
+
+  const handleCopyDraft = () => {
+    navigator.clipboard.writeText(draftText);
+    setCopiedToast(true);
+    setTimeout(() => setCopiedToast(false), 2000);
+  };
+
   // Open Gemini Reply Analyzer for a candidate
   const openAnalyzer = (cand: Candidate) => {
     setSelectedCandidate(cand);
     setEmailText(cand.emailReply || '');
     setAnalysisError('');
+    setDraftText('');
+    handleGenerateDraft(cand, 'auto');
   };
 
   // Run Gemini LLM analysis
@@ -689,10 +765,10 @@ export default function DashboardPage() {
         </div>
       </main>
 
-      {/* Gemini Email Reply Analyzer Modal */}
+      {/* Gemini Email Reply Analyzer Modal with AI Response Composer */}
       {selectedCandidate && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-          <div className="bg-slate-900 border border-slate-800 rounded-3xl max-w-3xl w-full p-6 shadow-2xl relative overflow-hidden max-h-[90vh] flex flex-col">
+          <div className="bg-slate-900 border border-slate-800 rounded-3xl max-w-5xl w-full p-6 shadow-2xl relative overflow-hidden max-h-[92vh] flex flex-col">
             {/* Modal Header */}
             <div className="flex items-center justify-between pb-4 border-b border-slate-800 shrink-0">
               <div className="flex items-center gap-3">
@@ -701,10 +777,10 @@ export default function DashboardPage() {
                 </div>
                 <div>
                   <h3 className="text-lg font-bold text-white flex items-center gap-2">
-                    Candidate Email Reply & Analysis
+                    Candidate Email Reply & AI Response Draft
                   </h3>
                   <p className="text-xs text-slate-400">
-                    Candidate: <span className="text-emerald-300 font-semibold">{selectedCandidate.name}</span> ({selectedCandidate.email})
+                    Candidate: <span className="text-emerald-300 font-semibold">{selectedCandidate.name}</span> ({selectedCandidate.email}) • <span className="text-slate-300">{selectedCandidate.domain}</span>
                   </p>
                 </div>
               </div>
@@ -716,58 +792,161 @@ export default function DashboardPage() {
               </button>
             </div>
 
-            {/* Modal Body */}
-            <div className="mt-5 space-y-5 overflow-y-auto flex-1 pr-1">
-              {/* Input / Display Area */}
-              <div>
-                <div className="flex items-center justify-between mb-2">
-                  <label className="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
-                    <MessageSquare className="w-4 h-4 text-emerald-400" />
-                    Candidate Email Reply Content
-                  </label>
+            {/* Modal Body: Dual Pane Layout */}
+            <div className="mt-5 grid grid-cols-1 lg:grid-cols-2 gap-6 overflow-y-auto flex-1 pr-1">
+              {/* LEFT COLUMN: Candidate Email & AI Classification */}
+              <div className="space-y-4 flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <label className="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
+                      <MessageSquare className="w-4 h-4 text-emerald-400" />
+                      Candidate Email Reply Content
+                    </label>
+                  </div>
+                  <textarea
+                    value={emailText}
+                    onChange={(e) => setEmailText(e.target.value)}
+                    rows={8}
+                    placeholder="Candidate email reply text..."
+                    className="w-full bg-slate-950/90 border border-slate-800 rounded-2xl p-4 text-xs leading-relaxed text-slate-100 placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 font-sans min-h-[190px]"
+                  />
                 </div>
-                <textarea
-                  value={emailText}
-                  onChange={(e) => setEmailText(e.target.value)}
-                  rows={9}
-                  placeholder="Candidate email reply text..."
-                  className="w-full bg-slate-950/90 border border-slate-800 rounded-2xl p-4 text-sm leading-relaxed text-slate-100 placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 font-sans min-h-[220px]"
-                />
+
+                {selectedCandidate.aiAnalysis && (
+                  <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-4 space-y-3">
+                    <div className="flex items-center justify-between pb-2.5 border-b border-slate-800">
+                      <span className="text-[11px] font-bold text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
+                        <Brain className="w-3.5 h-3.5 text-emerald-400" /> AI Classification
+                      </span>
+                      <span
+                        className={`px-2.5 py-0.5 rounded-full text-[11px] font-bold ${
+                          selectedCandidate.aiAnalysis.intent === 'ACCEPTED'
+                            ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40'
+                            : selectedCandidate.aiAnalysis.intent === 'DECLINED'
+                            ? 'bg-rose-500/20 text-rose-400 border border-rose-500/40'
+                            : 'bg-amber-500/20 text-amber-400 border border-amber-500/40'
+                        }`}
+                      >
+                        Intent: {selectedCandidate.aiAnalysis.intent}
+                      </span>
+                    </div>
+
+                    <div>
+                      <h4 className="text-[11px] font-medium text-slate-400 mb-1">Executive Summary</h4>
+                      <p className="text-xs font-medium text-slate-100 bg-slate-900 p-3 rounded-xl border border-slate-800 leading-relaxed">
+                        {selectedCandidate.aiAnalysis.summary}
+                      </p>
+                    </div>
+
+                    <div className="pt-2 flex items-center justify-between text-[11px] text-slate-400 border-t border-slate-800">
+                      <span>Recommended Status: <strong className="text-white">{selectedCandidate.aiAnalysis.recommendedStatus}</strong></span>
+                      <span>Confidence: <strong className="text-emerald-400">{Math.round(selectedCandidate.aiAnalysis.confidence * 100)}%</strong></span>
+                    </div>
+                  </div>
+                )}
               </div>
 
-              {/* Gemini Results Display */}
-              {selectedCandidate.aiAnalysis && (
-                <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-5 space-y-4">
-                  <div className="flex items-center justify-between pb-3 border-b border-slate-800">
-                    <span className="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
-                      <Brain className="w-4 h-4 text-emerald-400" /> AI Classification Analysis
-                    </span>
-                    <span
-                      className={`px-3 py-1 rounded-full text-xs font-bold ${
-                        selectedCandidate.aiAnalysis.intent === 'ACCEPTED'
-                          ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40'
-                          : selectedCandidate.aiAnalysis.intent === 'DECLINED'
-                          ? 'bg-rose-500/20 text-rose-400 border border-rose-500/40'
-                          : 'bg-amber-500/20 text-amber-400 border border-amber-500/40'
+              {/* RIGHT COLUMN: AI Response Draft Composer */}
+              <div className="bg-slate-950/90 border border-slate-800 rounded-2xl p-4 flex flex-col justify-between space-y-3">
+                <div>
+                  <div className="flex items-center justify-between pb-3 border-b border-slate-800 mb-3">
+                    <label className="text-xs font-bold text-emerald-400 flex items-center gap-1.5 uppercase tracking-wider">
+                      <Sparkles className="w-4 h-4 text-emerald-400" /> AI Response Draft
+                    </label>
+                    <button
+                      onClick={() => handleGenerateDraft(selectedCandidate, draftTone)}
+                      disabled={generatingDraft}
+                      className="text-[11px] text-emerald-400 hover:text-emerald-300 font-semibold flex items-center gap-1 bg-emerald-500/10 px-2.5 py-1 rounded-lg border border-emerald-500/30"
+                    >
+                      {generatingDraft ? (
+                        <div className="w-3 h-3 border-2 border-emerald-400/30 border-t-emerald-400 rounded-full animate-spin" />
+                      ) : (
+                        <RefreshCw className="w-3 h-3" />
+                      )}
+                      Re-generate Draft
+                    </button>
+                  </div>
+
+                  {/* Tone Strategy Toggles */}
+                  <div className="flex items-center gap-1.5 mb-3 overflow-x-auto pb-1">
+                    <button
+                      onClick={() => handleGenerateDraft(selectedCandidate, 'welcome')}
+                      className={`text-[11px] font-semibold px-2.5 py-1 rounded-lg border transition-all ${
+                        draftTone === 'welcome'
+                          ? 'bg-emerald-600 text-white border-emerald-500'
+                          : 'bg-slate-900 text-slate-400 border-slate-800 hover:text-white'
                       }`}
                     >
-                      Intent: {selectedCandidate.aiAnalysis.intent}
-                    </span>
+                      🟢 Welcome & Next Steps
+                    </button>
+                    <button
+                      onClick={() => handleGenerateDraft(selectedCandidate, 'answer')}
+                      className={`text-[11px] font-semibold px-2.5 py-1 rounded-lg border transition-all ${
+                        draftTone === 'answer'
+                          ? 'bg-amber-600 text-white border-amber-500'
+                          : 'bg-slate-900 text-slate-400 border-slate-800 hover:text-white'
+                      }`}
+                    >
+                      🟡 Answer Details
+                    </button>
+                    <button
+                      onClick={() => handleGenerateDraft(selectedCandidate, 'decline')}
+                      className={`text-[11px] font-semibold px-2.5 py-1 rounded-lg border transition-all ${
+                        draftTone === 'decline'
+                          ? 'bg-rose-600 text-white border-rose-500'
+                          : 'bg-slate-900 text-slate-400 border-slate-800 hover:text-white'
+                      }`}
+                    >
+                      🔵 Polite Acknowledgement
+                    </button>
                   </div>
 
-                  <div>
-                    <h4 className="text-xs font-medium text-slate-400 mb-1">Executive Summary</h4>
-                    <p className="text-sm font-semibold text-slate-100 bg-slate-900 p-3.5 rounded-xl border border-slate-800 leading-relaxed">
-                      {selectedCandidate.aiAnalysis.summary}
-                    </p>
-                  </div>
-
-                  <div className="pt-2 flex items-center justify-between text-xs text-slate-400 border-t border-slate-800">
-                    <span>Recommended Status: <strong className="text-white">{selectedCandidate.aiAnalysis.recommendedStatus}</strong></span>
-                    <span>Confidence Score: <strong className="text-emerald-400">{Math.round(selectedCandidate.aiAnalysis.confidence * 100)}%</strong></span>
-                  </div>
+                  {/* Editable Response Textarea */}
+                  <textarea
+                    value={draftText}
+                    onChange={(e) => setDraftText(e.target.value)}
+                    rows={10}
+                    placeholder={generatingDraft ? "OpenAI is drafting response..." : "AI generated response draft..."}
+                    className="w-full bg-slate-900 border border-slate-800 rounded-xl p-3.5 text-xs text-slate-100 placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 font-sans leading-relaxed min-h-[220px]"
+                  />
                 </div>
-              )}
+
+                {/* Bottom Actions Bar */}
+                <div className="flex items-center justify-between pt-3 border-t border-slate-800 gap-3">
+                  <button
+                    onClick={handleCopyDraft}
+                    disabled={!draftText.trim()}
+                    className="flex-1 bg-slate-900 hover:bg-slate-800 text-slate-200 text-xs font-semibold py-2.5 rounded-xl border border-slate-800 flex items-center justify-center gap-1.5 disabled:opacity-50 transition-all"
+                  >
+                    {copiedToast ? (
+                      <>
+                        <Check className="w-3.5 h-3.5 text-emerald-400" /> Copied to Clipboard!
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="w-3.5 h-3.5 text-slate-400" /> Copy Draft Text
+                      </>
+                    )}
+                  </button>
+
+                  <button
+                    onClick={handleSendReply}
+                    disabled={sendingReply || !draftText.trim()}
+                    className="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold py-2.5 rounded-xl shadow-lg shadow-emerald-900/30 border border-emerald-500/30 flex items-center justify-center gap-1.5 disabled:opacity-50 transition-all"
+                  >
+                    {sendingReply ? (
+                      <>
+                        <div className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                        Sending Email...
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-3.5 h-3.5 text-white" /> Send Email Response
+                      </>
+                    )}
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>

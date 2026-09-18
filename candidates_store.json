@@ -21,16 +21,17 @@
     "aiAnalysis": {
       "intent": "QUESTION",
       "confidence": 0.85,
-      "summary": "Asmat Jabeen is excited about the Brand Ambassador position but seeks clarification on several details before accepting the offer. The questions pertain to compensation, work structure, reporting, completion documentation, and any potential fees.",
+      "summary": "Asmat Jabeen is excited about the Brand Ambassador position but seeks clarification on several details before accepting the offer. She has outlined specific questions regarding compensation, work structure, reporting, documentation, and any potential fees.",
       "keyPoints": [
         "Candidate is excited about the opportunity.",
         "Seeks clarification on whether the position is paid or unpaid.",
         "Inquires about the work structure (remote, in-person, hybrid).",
-        "Asks about reporting structure and typical weekly tasks.",
-        "Requests information on completion documentation and any required fees."
+        "Wants to know reporting structure and typical tasks.",
+        "Asks about certification and documentation for university.",
+        "Questions if there are any fees or deposits required."
       ],
       "recommendedStatus": "NEEDS_REVIEW",
-      "analyzedAt": "2026-09-18T11:20:54.982Z"
+      "analyzedAt": "2026-09-18T13:51:34.171Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -58,11 +59,12 @@
       "confidence": 0.95,
       "summary": "Zain has accepted the internship offer and will send the signed offer letter shortly. He acknowledges the offer and the next steps outlined in the email.",
       "keyPoints": [
-        "Zain accepts the offer for the ChangerMaker Program.",
-        "He will send the signed offer letter soon."
+        "Zain accepts the internship offer.",
+        "He will send the signed offer letter soon.",
+        "The start date is September 22, 2026."
       ],
       "recommendedStatus": "ACCEPTED",
-      "analyzedAt": "2026-09-18T11:20:08.190Z"
+      "analyzedAt": "2026-09-18T13:50:43.583Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -71,22 +73,21 @@
     "email": "hifzaayaz460@gmail.com",
     "domain": "ChangerMaker (Brand Ambassador)",
     "university": "University of Mianwali",
-    "status": "ACCEPTED",
+    "status": "NEEDS_REVIEW",
     "offerSentDate": "2026-09-15",
     "id": "cand-1789655037179-olct1",
-    "emailReply": "Hello DataCrumbs, Once again I'm truly grateful to you for this offer. This\r\nis a confirmation mail for the Brand Ambassador role. I'm attaching the\r\nconfirmation response to this email. I'm excited and looking forward to\r\nworking with you and bring a positive change. Yes, together, we can make a\r\ndifference. Thank you!\r\n\r\nOn Fri, Sep 18, 2026, 3:47 PM DataCrumbs <careers@datacrumbs.org> wrote:\r\n\r\n> Dear *Hifza Ayaz*,\r\n>\r\n> This is a friendly reminder regarding the internship offer recently sent\r\n> to you for the *DataCrumbs ChangerMaker (Brand Ambassador)*.\r\n> Next Steps\r\n>\r\n>    - Review the internship offer letter sent to your email.\r\n>    - Reply to this email with your confirmation of acceptance or the\r\n>    signed offer letter.\r\n>    - If you have any questions or need clarification regarding the offer,\r\n>    please feel free to reply to this email.\r\n>\r\n> We look forward to receiving your confirmation.\r\n>\r\n> Warm regards,\r\n>\r\n> Team DataCrumbs\r\n>\r\n",
+    "emailReply": "Thank you for the offer. I have a query, is this a complete remote\r\ninternship porgram or we have to visit/target a specific\r\nschool/college/university to serve as a brand ambassador? If it's like that\r\nwe have to visit, then can you please align my tasks, remote entirely. It\r\nwill be beneficial for me. Thank you!\r\n\r\nOn Thu, Sep 17, 2026, 5:07 PM DataCrumbs <careers@datacrumbs.org> wrote:\r\n\r\n> 📄 ChangerMaker Program Offer – Hifza Ayaz\r\n>\r\n> We are pleased to offer you a position in our *ChangerMaker Program* with\r\n> *DataCrumbs*.\r\n>\r\n> Attached to this email is your official *Offer Letter*. It outlines the\r\n> program duration, responsibilities, and start date.\r\n>\r\n> Kindly review the document thoroughly and *sign and return the offer\r\n> letter* to this email address by the stated deadline to confirm your\r\n> participation.\r\n> ------------------------------\r\n> Next Steps:\r\n>\r\n>    1. Download and review the attached offer letter carefully.\r\n>    2. Sign the offer letter digitally or manually.\r\n>    3. Reply to this email with the signed offer letter attached (PDF or\r\n>    image format).\r\n>    4. Ensure you submit the signed letter before *your start date:\r\n>    September 22, 2026*.\r\n>\r\n> We are excited to welcome you aboard and look forward to working with you.\r\n>\r\n> If you have any questions, feel free to reach out directly by replying to\r\n> this email.\r\n>\r\n> Warm regards,\r\n> *Team DataCrumbs*\r\n> Empowering Future Innovators\r\n>\r\n",
     "aiAnalysis": {
-      "intent": "ACCEPTED",
-      "confidence": 0.95,
-      "summary": "Hifza Ayaz has confirmed her acceptance of the internship offer for the Brand Ambassador role and expressed excitement about the opportunity. She has attached the confirmation response as requested.",
+      "intent": "QUESTION",
+      "confidence": 0.85,
+      "summary": "Hifza Ayaz is inquiring whether the internship is fully remote or requires visiting specific educational institutions. She requests that her tasks be aligned for a fully remote experience if visits are necessary.",
       "keyPoints": [
-        "Grateful for the internship offer",
-        "Confirmation of acceptance for the Brand Ambassador role",
-        "Attached confirmation response",
-        "Expressed excitement about working together"
+        "Candidate thanks for the offer.",
+        "Asks if the internship is completely remote or requires visits to schools/colleges/universities.",
+        "Requests alignment of tasks for a fully remote experience."
       ],
-      "recommendedStatus": "ACCEPTED",
-      "analyzedAt": "2026-09-18T13:47:25.740Z"
+      "recommendedStatus": "NEEDS_REVIEW",
+      "analyzedAt": "2026-09-18T13:50:02.023Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -110,7 +111,7 @@
         "Candidate looks forward to contributing to the team."
       ],
       "recommendedStatus": "ACCEPTED",
-      "analyzedAt": "2026-09-18T11:19:10.305Z"
+      "analyzedAt": "2026-09-18T13:49:52.428Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -189,13 +190,14 @@
     "aiAnalysis": {
       "intent": "ACCEPTED",
       "confidence": 0.9,
-      "summary": "Maria Tariq expressed her interest in the internship offer and thanked the company for it. She did not provide any further details or questions.",
+      "summary": "Maria Tariq expressed her interest in the internship offer from DataCrumbs and thanked them for the opportunity. She did not provide any further details or questions.",
       "keyPoints": [
         "Candidate expressed interest in the offer.",
-        "Candidate thanked the company for the offer."
+        "Candidate thanked the company for the offer.",
+        "No questions or concerns were raised."
       ],
       "recommendedStatus": "ACCEPTED",
-      "analyzedAt": "2026-09-18T11:20:41.120Z"
+      "analyzedAt": "2026-09-18T13:51:19.235Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -211,14 +213,13 @@
     "aiAnalysis": {
       "intent": "QUESTION",
       "confidence": 0.85,
-      "summary": "The candidate acknowledges receipt of the offer letter and intends to review and return it. They also inquire about the absence of a stipend in the offer letter.",
+      "summary": "The candidate acknowledges receipt of the offer letter and expresses intent to review and return it. They also inquire about the absence of a stipend in the offer letter.",
       "keyPoints": [
-        "Candidate received the offer letter and will review it.",
-        "Candidate plans to sign and return the offer letter.",
-        "Candidate questions the lack of stipend mentioned in the offer letter."
+        "Candidate received the offer letter and will review and sign it.",
+        "Candidate inquired about the lack of stipend mentioned in the offer letter."
       ],
       "recommendedStatus": "NEEDS_REVIEW",
-      "analyzedAt": "2026-09-18T11:20:57.101Z"
+      "analyzedAt": "2026-09-18T13:51:37.171Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -487,10 +488,11 @@
       "summary": "Nauman Imtiaz has accepted the internship offer from DataCrumbs. He did not provide any additional questions or comments in his response.",
       "keyPoints": [
         "Candidate accepted the offer.",
-        "No questions or concerns were raised."
+        "No questions or concerns were raised.",
+        "Response was direct and to the point."
       ],
       "recommendedStatus": "ACCEPTED",
-      "analyzedAt": "2026-09-18T11:21:02.280Z"
+      "analyzedAt": "2026-09-18T13:51:43.610Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -533,14 +535,14 @@
     "aiAnalysis": {
       "intent": "ACCEPTED",
       "confidence": 0.95,
-      "summary": "Saad Ullah Malik has accepted the internship offer for the DataCrumbs ChangeMaker Program and has attached the signed offer letter. He is looking forward to starting on September 22, 2026.",
+      "summary": "Saad Ullah Malik has accepted the internship offer for the DataCrumbs ChangeMaker Program and has attached the signed offer letter. He is excited to start on September 22, 2026.",
       "keyPoints": [
         "Candidate accepted the internship offer.",
         "Signed offer letter is attached.",
         "Start date is September 22, 2026."
       ],
       "recommendedStatus": "ACCEPTED",
-      "analyzedAt": "2026-09-18T11:19:36.718Z"
+      "analyzedAt": "2026-09-18T13:50:16.538Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -732,17 +734,17 @@
     "aiAnalysis": {
       "intent": "QUESTION",
       "confidence": 0.85,
-      "summary": "Kamran Hassan expressed excitement about the internship opportunity but has several questions regarding the program details. He seeks clarification on the format, location, schedule, and any required documents before the start date.",
+      "summary": "Kamran Hassan expresses gratitude for the internship offer and seeks clarification on several details regarding the program before the start date. He asks about the format, location, schedule, and any required documents.",
       "keyPoints": [
-        "Expressed gratitude for the internship offer.",
-        "Inquired if the program is online or in-person.",
-        "Requested the physical location if the program is in-person.",
-        "Asked for the schedule and timings of the sessions.",
-        "Sought information on where and when to report on September 22, 2026.",
-        "Requested details on any documents or requirements needed before the program starts."
+        "Expresses excitement about the opportunity.",
+        "Requests confirmation on whether the program is online or physical.",
+        "Asks for the location if the program is physical.",
+        "Inquires about the schedule and timings of the sessions.",
+        "Seeks information on where and when to report on September 22, 2026.",
+        "Requests details on any documents or requirements needed before the program starts."
       ],
       "recommendedStatus": "NEEDS_REVIEW",
-      "analyzedAt": "2026-09-18T11:20:37.944Z"
+      "analyzedAt": "2026-09-18T13:51:14.641Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -815,11 +817,11 @@
       "summary": "Saba Azhar has accepted the internship offer for the ChangerMaker Program and has attached the signed offer letter. She is looking forward to starting on the specified date.",
       "keyPoints": [
         "Candidate expressed gratitude for the internship offer.",
-        "Signed offer letter is attached to the email.",
+        "Attached signed offer letter to confirm participation.",
         "Start date confirmed as September 22, 2026."
       ],
       "recommendedStatus": "ACCEPTED",
-      "analyzedAt": "2026-09-18T11:19:44.656Z"
+      "analyzedAt": "2026-09-18T13:50:24.507Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -835,14 +837,14 @@
     "aiAnalysis": {
       "intent": "QUESTION",
       "confidence": 0.7,
-      "summary": "The candidate, Lal Bux, is requesting a correction in the internship offer letter, mistakenly printed with the wrong name. They want it changed to Aushique Hussain.",
+      "summary": "The candidate, Lal Bux, is requesting a correction in the name on the internship offer letter, mistakenly printed as Aushique Hussain. This indicates a need for clarification regarding the name on the document.",
       "keyPoints": [
-        "Candidate requests a name change on the offer letter.",
-        "Mistakenly printed name was Lal Bux instead of Aushique Hussain.",
-        "The email indicates a need for clarification or correction."
+        "Candidate's name is Lal Bux.",
+        "Request to change the name on the offer letter from Lal Bux to Aushique Hussain.",
+        "Mistake was made during printing."
       ],
       "recommendedStatus": "NEEDS_REVIEW",
-      "analyzedAt": "2026-09-18T11:21:30.434Z"
+      "analyzedAt": "2026-09-18T13:52:07.519Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -889,13 +891,13 @@
     "aiAnalysis": {
       "intent": "QUESTION",
       "confidence": 0.85,
-      "summary": "Dua Najam is inquiring about the working hours and whether the internship is remote or onsite. This indicates a need for clarification before making a decision.",
+      "summary": "The candidate, Dua Najam, is inquiring about the working hours and whether the position is remote or onsite. This indicates a need for clarification before making a decision.",
       "keyPoints": [
         "Candidate is seeking information about working hours.",
         "Candidate wants to know if the position is remote or onsite."
       ],
       "recommendedStatus": "NEEDS_REVIEW",
-      "analyzedAt": "2026-09-18T11:21:14.770Z"
+      "analyzedAt": "2026-09-18T13:51:58.227Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -947,14 +949,14 @@
     "aiAnalysis": {
       "intent": "UNCERTAIN",
       "confidence": 0.2,
-      "summary": "The candidate has not yet responded to the offer letter, leaving their intent unclear. There is no indication of acceptance or decline in the provided content.",
+      "summary": "The candidate has not yet responded to the offer letter, and their intent to accept or decline is unclear. There is no indication of any questions or concerns raised in the response.",
       "keyPoints": [
-        "The candidate received an offer for the ChangerMaker Program.",
-        "The email outlines next steps for reviewing and signing the offer letter.",
-        "The deadline for submission is September 22, 2026."
+        "Candidate has received the offer letter.",
+        "No explicit acceptance or decline of the offer.",
+        "No questions or concerns mentioned."
       ],
       "recommendedStatus": "NEEDS_REVIEW",
-      "analyzedAt": "2026-09-18T11:20:59.951Z"
+      "analyzedAt": "2026-09-18T13:51:40.735Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -992,14 +994,14 @@
     "aiAnalysis": {
       "intent": "ACCEPTED",
       "confidence": 0.95,
-      "summary": "The candidate, Azmat Mehmood, has accepted the internship offer from DataCrumbs. They expressed gratitude for the opportunity.",
+      "summary": "The candidate, Azmat Mehmood, has accepted the internship offer from DataCrumbs. He expressed gratitude for the opportunity.",
       "keyPoints": [
         "Candidate accepted the offer.",
-        "Expressed gratitude for the opportunity.",
-        "No questions or uncertainties mentioned."
+        "Expressed thanks for the opportunity.",
+        "No questions or concerns raised."
       ],
       "recommendedStatus": "ACCEPTED",
-      "analyzedAt": "2026-09-18T11:21:07.002Z"
+      "analyzedAt": "2026-09-18T13:51:47.241Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -1033,14 +1035,14 @@
     "aiAnalysis": {
       "intent": "ACCEPTED",
       "confidence": 0.95,
-      "summary": "Tanzeel Ahmed has accepted the internship offer from DataCrumbs. The response is clear and straightforward.",
+      "summary": "The candidate, Tanzeel Ahmed, has accepted the internship offer from DataCrumbs. They did not provide any additional questions or comments in their response.",
       "keyPoints": [
         "Candidate accepted the offer.",
         "No questions or concerns were raised.",
-        "Response is direct and confirms participation."
+        "Response was direct and concise."
       ],
       "recommendedStatus": "ACCEPTED",
-      "analyzedAt": "2026-09-18T11:20:25.619Z"
+      "analyzedAt": "2026-09-18T13:50:59.620Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -1145,15 +1147,15 @@
     "emailReply": "<https://drive.google.com/file/d/1u4eIVCmxL1keppGdDLTtjZoaYMa9hKWD/view?usp=drivesdk>\r\nzunaira_wasti_OfferLetter_copy.pdf\r\n<https://drive.google.com/file/d/1u4eIVCmxL1keppGdDLTtjZoaYMa9hKWD/view?usp=drivesdk>\r\n\r\n\r\nOn Thu, 17 Sept 2026, 4:37 pm DataCrumbs, <careers@datacrumbs.org> wrote:\r\n\r\n> 📄 ChangerMaker Program Offer – zunaira wasti\r\n>\r\n> We are pleased to offer you a position in our *ChangerMaker Program* with\r\n> *DataCrumbs*.\r\n>\r\n> Attached to this email is your official *Offer Letter*. It outlines the\r\n> program duration, responsibilities, and start date.\r\n>\r\n> Kindly review the document thoroughly and *sign and return the offer\r\n> letter* to this email address by the stated deadline to confirm your\r\n> participation.\r\n> ------------------------------\r\n> Next Steps:\r\n>\r\n>    1. Download and review the attached offer letter carefully.\r\n>    2. Sign the offer letter digitally or manually.\r\n>    3. Reply to this email with the signed offer letter attached (PDF or\r\n>    image format).\r\n>    4. Ensure you submit the signed letter before *your start date:\r\n>    September 22, 2026*.\r\n>\r\n> We are excited to welcome you aboard and look forward to working with you.\r\n>\r\n> If you have any questions, feel free to reach out directly by replying to\r\n> this email.\r\n>\r\n> Warm regards,\r\n> *Team DataCrumbs*\r\n> Empowering Future Innovators\r\n>\r\n",
     "aiAnalysis": {
       "intent": "UNCERTAIN",
-      "confidence": 0.4,
-      "summary": "The candidate has shared links to the offer letter but has not explicitly stated acceptance or decline of the offer. The response lacks clarity on their decision.",
+      "confidence": 0.6,
+      "summary": "The candidate has provided links to the offer letter but has not explicitly stated acceptance or decline. The response lacks a clear confirmation.",
       "keyPoints": [
-        "Candidate provided links to the offer letter document.",
-        "No explicit acceptance or decline of the internship offer.",
-        "Response does not address any questions or concerns."
+        "Candidate provided links to the offer letter.",
+        "No explicit acceptance or decline mentioned.",
+        "Response does not confirm submission of the signed offer letter."
       ],
       "recommendedStatus": "NEEDS_REVIEW",
-      "analyzedAt": "2026-09-18T11:20:06.187Z"
+      "analyzedAt": "2026-09-18T13:50:41.017Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -1176,7 +1178,7 @@
         "Asked for details on expected weekly responsibilities and working hours."
       ],
       "recommendedStatus": "NEEDS_REVIEW",
-      "analyzedAt": "2026-09-18T11:19:49.230Z"
+      "analyzedAt": "2026-09-18T13:50:32.834Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -1221,15 +1223,15 @@
     "aiAnalysis": {
       "intent": "ACCEPTED",
       "confidence": 0.95,
-      "summary": "Sahil Kumar has accepted the internship offer for the DataCrumbs ChangerMaker Program and has attached the signed offer letter. He expresses excitement about starting the program and working with the team.",
+      "summary": "Sahil Kumar has accepted the offer to join the DataCrumbs ChangerMaker Program as a Brand Ambassador and has attached the signed offer letter. He expresses excitement about starting the program and working with the team.",
       "keyPoints": [
-        "Candidate accepted the offer for the ChangerMaker Program.",
-        "Signed offer letter is attached for records.",
+        "Candidate accepted the internship offer.",
+        "Signed offer letter is attached.",
         "Start date is September 22, 2026.",
         "Candidate is a Data Science student at DHA Suffa University."
       ],
       "recommendedStatus": "ACCEPTED",
-      "analyzedAt": "2026-09-18T11:21:33.094Z"
+      "analyzedAt": "2026-09-18T13:52:11.683Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -1290,15 +1292,15 @@
     "aiAnalysis": {
       "intent": "ACCEPTED",
       "confidence": 0.95,
-      "summary": "Muhammad Ali Meer has confirmed his acceptance of the internship offer for the ChangerMaker Program and is eager to join. He has also inquired about the format of the program and requested additional details.",
+      "summary": "Muhammad Ali Meer has confirmed his acceptance of the internship offer for the ChangerMaker Program and is inquiring about the program's format and location details.",
       "keyPoints": [
-        "Accepted the internship offer for the ChangerMaker Program.",
-        "Ready to join on September 22, 2026.",
-        "Inquired about the program's format (On-Site, Remote, or Hybrid).",
+        "Candidate accepted the offer for the ChangerMaker Program.",
+        "Start date confirmed as September 22, 2026.",
+        "Inquired about the program's format (On-Site, Remote, Hybrid).",
         "Requested office location and working schedule if the program is on-site."
       ],
       "recommendedStatus": "ACCEPTED",
-      "analyzedAt": "2026-09-18T11:20:30.082Z"
+      "analyzedAt": "2026-09-18T13:51:03.986Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -1339,7 +1341,7 @@
         "Candidate looks forward to joining the program."
       ],
       "recommendedStatus": "ACCEPTED",
-      "analyzedAt": "2026-09-18T11:20:49.101Z"
+      "analyzedAt": "2026-09-18T13:51:27.690Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -1382,14 +1384,14 @@
     "aiAnalysis": {
       "intent": "ACCEPTED",
       "confidence": 0.95,
-      "summary": "Tanzila Younas expresses gratitude for the internship opportunity and confirms acceptance of the offer. She emphasizes her eagerness to learn and grow with the organization.",
+      "summary": "Tanzila Younas expressed gratitude for the internship opportunity and confirmed acceptance of the offer. She emphasized her eagerness to learn and grow with the organization.",
       "keyPoints": [
-        "Expressed gratitude for the opportunity",
-        "Confirmed acceptance of the offer",
-        "Desires to learn and grow with the organization"
+        "Candidate is thankful for the opportunity.",
+        "Expressed hope for mutual benefits.",
+        "Confirmed acceptance of the offer."
       ],
       "recommendedStatus": "ACCEPTED",
-      "analyzedAt": "2026-09-18T11:19:40.279Z"
+      "analyzedAt": "2026-09-18T13:50:19.551Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -1423,14 +1425,14 @@
     "aiAnalysis": {
       "intent": "UNCERTAIN",
       "confidence": 0.7,
-      "summary": "Muhammad Saad Khan acknowledges the internship offer and indicates he will review and return the signed offer letter shortly. He also inquires whether the program is online or onsite.",
+      "summary": "The candidate acknowledges the offer and indicates they will review and return the signed offer letter shortly, but seeks clarification on whether the program is online or onsite.",
       "keyPoints": [
-        "Thanks the team for the offer.",
-        "Will sign and return the offer letter shortly.",
-        "Inquires if the program is online or onsite."
+        "Candidate thanks the team for the offer.",
+        "Candidate is reviewing the offer letter and will return it shortly.",
+        "Candidate asks for clarification on the format of the ChangerMaker Program (online or onsite)."
       ],
       "recommendedStatus": "NEEDS_REVIEW",
-      "analyzedAt": "2026-09-18T11:19:31.914Z"
+      "analyzedAt": "2026-09-18T13:50:13.076Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -1529,14 +1531,13 @@
     "aiAnalysis": {
       "intent": "UNCERTAIN",
       "confidence": 0.3,
-      "summary": "The candidate has not yet responded to the offer letter, and their intent to accept or decline is unclear. There is no explicit confirmation or questions raised in the provided content.",
+      "summary": "The candidate has not yet provided a clear acceptance or decline of the offer. The response is missing, which leaves their intent ambiguous.",
       "keyPoints": [
-        "The candidate received an offer for the ChangerMaker Program.",
-        "The offer letter outlines responsibilities and start date.",
-        "The candidate has not yet signed or returned the offer letter."
+        "No explicit acceptance or decline stated in the response.",
+        "The candidate may still be considering the offer."
       ],
       "recommendedStatus": "NEEDS_REVIEW",
-      "analyzedAt": "2026-09-18T11:21:11.242Z"
+      "analyzedAt": "2026-09-18T13:51:50.695Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -1579,14 +1580,14 @@
     "aiAnalysis": {
       "intent": "UNCERTAIN",
       "confidence": 0.3,
-      "summary": "The candidate has not explicitly accepted or declined the offer in their email response. There is a lack of clear communication regarding their decision.",
+      "summary": "The candidate has not yet provided a clear acceptance or decline of the offer. There is no indication of any questions or concerns.",
       "keyPoints": [
         "Candidate received the offer letter.",
         "No explicit acceptance or decline stated.",
-        "Candidate may have questions or need more time to decide."
+        "No questions or concerns mentioned."
       ],
       "recommendedStatus": "NEEDS_REVIEW",
-      "analyzedAt": "2026-09-18T11:21:35.657Z"
+      "analyzedAt": "2026-09-18T13:52:16.838Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -1611,14 +1612,14 @@
     "aiAnalysis": {
       "intent": "UNCERTAIN",
       "confidence": 0.2,
-      "summary": "The candidate has not explicitly accepted or declined the offer in their response. There is a lack of clear communication regarding their decision.",
+      "summary": "The candidate has not yet responded to the offer letter, and there is no indication of acceptance or decline in the provided content. The email is a forwarding of the offer letter.",
       "keyPoints": [
-        "The candidate received the offer letter.",
-        "No explicit acceptance or decline was stated in the response.",
-        "The candidate may need more time to consider the offer."
+        "The candidate received an offer for the ChangerMaker Program at DataCrumbs.",
+        "The email content is a forwarded message from DataCrumbs outlining the offer details.",
+        "There is no direct response from the candidate regarding acceptance or decline."
       ],
       "recommendedStatus": "NEEDS_REVIEW",
-      "analyzedAt": "2026-09-18T11:20:13.661Z"
+      "analyzedAt": "2026-09-18T13:50:50.591Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -1761,14 +1762,14 @@
     "aiAnalysis": {
       "intent": "ACCEPTED",
       "confidence": 0.95,
-      "summary": "Bilawal Naeem has accepted the internship offer from DataCrumbs. He did not provide any additional questions or comments.",
+      "summary": "The candidate, Bilawal Naeem, has accepted the internship offer from DataCrumbs. He did not provide any additional questions or comments in his response.",
       "keyPoints": [
         "Candidate accepted the offer.",
-        "No questions or concerns raised.",
-        "Response is clear and straightforward."
+        "No questions or concerns were raised.",
+        "Response was direct and to the point."
       ],
       "recommendedStatus": "ACCEPTED",
-      "analyzedAt": "2026-09-18T11:19:24.741Z"
+      "analyzedAt": "2026-09-18T13:50:04.542Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -1895,16 +1896,15 @@
     "emailReply": "Hello Team,\r\n\r\nThank you so much for sharing the offer letter for the Brand Ambassador\r\nIntern position at Data Crums. I have signed and returned it.\r\n\r\nI have a few quick questions as the details were not mentioned in the offer\r\nletter and email:\r\n\r\n1. Could you please clarify the key responsibilities and day-to-day tasks\r\nfor this role?\r\n2. I had applied for the remote position - could you confirm if this role\r\nis fully remote?\r\n3. If it is remote, will we be required to be on camera / show our face\r\nduring working hours?\r\n\r\nThank you for your time. I am excited to get started and just wanted to\r\nhave clarity on the role.\r\n\r\nBest regards,\r\nIffah Qadeer\r\n\r\n\r\nOn Thu, 17 Sept 2026, 4:23 pm DataCrumbs, <careers@datacrumbs.org> wrote:\r\n\r\n> 📄 ChangerMaker Program Offer – Iffah Qadeer\r\n>\r\n> We are pleased to offer you a position in our *ChangerMaker Program* with\r\n> *DataCrumbs*.\r\n>\r\n> Attached to this email is your official *Offer Letter*. It outlines the\r\n> program duration, responsibilities, and start date.\r\n>\r\n> Kindly review the document thoroughly and *sign and return the offer\r\n> letter* to this email address by the stated deadline to confirm your\r\n> participation.\r\n> ------------------------------\r\n> Next Steps:\r\n>\r\n>    1. Download and review the attached offer letter carefully.\r\n>    2. Sign the offer letter digitally or manually.\r\n>    3. Reply to this email with the signed offer letter attached (PDF or\r\n>    image format).\r\n>    4. Ensure you submit the signed letter before *your start date:\r\n>    September 22, 2026*.\r\n>\r\n> We are excited to welcome you aboard and look forward to working with you.\r\n>\r\n> If you have any questions, feel free to reach out directly by replying to\r\n> this email.\r\n>\r\n> Warm regards,\r\n> *Team DataCrumbs*\r\n> Empowering Future Innovators\r\n>\r\n",
     "aiAnalysis": {
       "intent": "QUESTION",
-      "confidence": 0.85,
-      "summary": "Iffah Qadeer has accepted the internship offer but seeks clarification on several aspects of the role, including responsibilities, remote work status, and camera requirements during working hours.",
+      "confidence": 0.9,
+      "summary": "Iffah Qadeer has accepted the internship offer but seeks clarification on several aspects of the role. She has signed and returned the offer letter.",
       "keyPoints": [
-        "Candidate has signed and returned the offer letter.",
+        "Candidate has signed and returned the offer letter for the Brand Ambassador Intern position.",
         "Requests clarification on key responsibilities and day-to-day tasks.",
-        "Asks if the position is fully remote.",
-        "Inquires about the requirement to be on camera during working hours."
+        "Asks if the position is fully remote and about camera requirements during working hours."
       ],
       "recommendedStatus": "NEEDS_REVIEW",
-      "analyzedAt": "2026-09-18T11:20:52.949Z"
+      "analyzedAt": "2026-09-18T13:51:30.778Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -1980,14 +1980,14 @@
     "aiAnalysis": {
       "intent": "ACCEPTED",
       "confidence": 0.95,
-      "summary": "The candidate, Muhammad Abdul Moiz, has attached the signed offer letter in response to the internship offer from DataCrumbs, indicating acceptance of the position.",
+      "summary": "The candidate has attached the signed offer letter, indicating acceptance of the internship offer. They have followed the instructions provided in the offer email.",
       "keyPoints": [
         "Signed offer letter attached",
-        "Responded to the internship offer",
-        "Indicates acceptance of the position"
+        "Candidate is confirming participation in the ChangerMaker Program",
+        "Response aligns with the instructions given in the offer email"
       ],
       "recommendedStatus": "ACCEPTED",
-      "analyzedAt": "2026-09-18T11:20:04.311Z"
+      "analyzedAt": "2026-09-18T13:50:37.714Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -2170,14 +2170,14 @@
     "aiAnalysis": {
       "intent": "ACCEPTED",
       "confidence": 0.95,
-      "summary": "Aiman Iqbal has accepted the internship offer from DataCrumbs for the ChangerMaker Program. The response is clear and direct.",
+      "summary": "The candidate, Aiman Iqbal, has accepted the internship offer from DataCrumbs. They did not provide any additional questions or comments in their response.",
       "keyPoints": [
-        "Candidate accepts the offer.",
+        "Candidate accepted the offer.",
         "No questions or concerns raised.",
-        "Response is straightforward and confirms participation."
+        "Response is clear and straightforward."
       ],
       "recommendedStatus": "ACCEPTED",
-      "analyzedAt": "2026-09-18T11:20:46.364Z"
+      "analyzedAt": "2026-09-18T13:51:22.995Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -2193,14 +2193,14 @@
     "aiAnalysis": {
       "intent": "ACCEPTED",
       "confidence": 0.95,
-      "summary": "Mehak Nasir has accepted the Brand Ambassador position in the ChangerMaker Program and has attached the signed offer letter. She expresses enthusiasm about starting the role on the specified date.",
+      "summary": "Mehak Nasir has accepted the Brand Ambassador position in the ChangerMaker Program and has attached the signed offer letter. She expresses excitement about starting the role on September 22, 2026.",
       "keyPoints": [
         "Candidate accepted the Brand Ambassador position.",
         "Start date is September 22, 2026.",
         "Signed offer letter is attached."
       ],
       "recommendedStatus": "ACCEPTED",
-      "analyzedAt": "2026-09-18T11:21:59.561Z"
+      "analyzedAt": "2026-09-18T13:52:27.575Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -2243,14 +2243,13 @@
     "aiAnalysis": {
       "intent": "QUESTION",
       "confidence": 0.85,
-      "summary": "The candidate expressed gratitude for the internship offer and inquired whether relocation is necessary or if the program is fully remote.",
+      "summary": "The candidate expressed gratitude for the internship offer but inquired about the necessity of relocation for the program.",
       "keyPoints": [
-        "Candidate is grateful for the offer.",
-        "Asks if relocation is required for the program.",
-        "Seeks clarification before signing the offer letter."
+        "Candidate is grateful for the internship offer.",
+        "Asks if relocation is required or if the program is fully remote."
       ],
       "recommendedStatus": "NEEDS_REVIEW",
-      "analyzedAt": "2026-09-18T11:22:01.498Z"
+      "analyzedAt": "2026-09-18T13:52:30.004Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -2438,14 +2437,14 @@
     "aiAnalysis": {
       "intent": "ACCEPTED",
       "confidence": 0.95,
-      "summary": "The candidate, Muhammad Jawad Khan, has accepted the internship offer from DataCrumbs. He did not provide any additional questions or comments in his response.",
+      "summary": "The candidate, Muhammad Jawad Khan, has accepted the internship offer from DataCrumbs.",
       "keyPoints": [
-        "Candidate accepted the internship offer.",
-        "No questions or concerns raised.",
-        "Response is clear and direct."
+        "Candidate accepted the offer.",
+        "No questions or uncertainties expressed.",
+        "Response is clear and straightforward."
       ],
       "recommendedStatus": "ACCEPTED",
-      "analyzedAt": "2026-09-18T11:22:06.533Z"
+      "analyzedAt": "2026-09-18T13:52:33.379Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -2497,16 +2496,16 @@
     "aiAnalysis": {
       "intent": "ACCEPTED",
       "confidence": 0.95,
-      "summary": "Natalia Atif has formally accepted the internship offer for the DataCrumbs ChangeMaker Program and is eager to participate. She has also requested clarification on several logistical details regarding the program.",
+      "summary": "Natalia Atif has formally accepted the internship offer for the DataCrumbs ChangeMaker Program and is eager to start. She has also requested clarification on several important details regarding the program.",
       "keyPoints": [
         "Formally accepted the internship offer.",
-        "Expressed excitement about joining the program.",
+        "Excited to join the DataCrumbs ChangeMaker Program.",
         "Requested clarification on remote/on-site requirements.",
         "Inquired about working hours and schedule flexibility.",
         "Asked about tasks, responsibilities, and training opportunities."
       ],
       "recommendedStatus": "ACCEPTED",
-      "analyzedAt": "2026-09-18T11:19:04.900Z"
+      "analyzedAt": "2026-09-18T13:49:49.079Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -2549,13 +2548,14 @@
     "aiAnalysis": {
       "intent": "UNCERTAIN",
       "confidence": 0.2,
-      "summary": "The candidate has not yet responded to the offer letter, and there is no indication of acceptance or declination in the provided content. The response is missing.",
+      "summary": "The candidate has not yet responded to the offer letter, and their intent to accept or decline is unclear. There is no indication of any questions or concerns.",
       "keyPoints": [
-        "No response from the candidate was provided.",
-        "The offer letter outlines the next steps for acceptance."
+        "Candidate has received the offer letter.",
+        "No response indicating acceptance or decline has been provided.",
+        "No questions or clarifications have been asked."
       ],
       "recommendedStatus": "NEEDS_REVIEW",
-      "analyzedAt": "2026-09-18T11:19:30.175Z"
+      "analyzedAt": "2026-09-18T13:50:10.698Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -2648,14 +2648,14 @@
     "aiAnalysis": {
       "intent": "UNCERTAIN",
       "confidence": 0.7,
-      "summary": "The candidate acknowledged the offer but did not explicitly accept or decline it. Their response is neutral and lacks a commitment to the offer.",
+      "summary": "The candidate acknowledged the offer but did not explicitly accept or decline it. There is no indication of any questions or concerns.",
       "keyPoints": [
         "Candidate thanked the company for the offer.",
         "No explicit acceptance or decline of the offer was stated.",
-        "Response indicates a neutral stance towards the offer."
+        "No questions or concerns were raised in the response."
       ],
       "recommendedStatus": "NEEDS_REVIEW",
-      "analyzedAt": "2026-09-18T11:20:09.930Z"
+      "analyzedAt": "2026-09-18T13:50:46.503Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -2694,14 +2694,14 @@
     "aiAnalysis": {
       "intent": "QUESTION",
       "confidence": 0.85,
-      "summary": "The candidate is inquiring about the timing of the program and requesting a change of email in the offer letter. They are seeking clarification on these points before proceeding.",
+      "summary": "The candidate is inquiring about the timing of the program and requesting a change of email in the offer letter. They are seeking clarification on these matters before confirming their acceptance.",
       "keyPoints": [
-        "Candidate asked for the timing of the program.",
-        "Candidate wants to change their email address in the offer letter.",
-        "Candidate is seeking clarification before confirming acceptance."
+        "Candidate asks for program timing details.",
+        "Candidate requests to change their email address in the offer letter.",
+        "Candidate has not explicitly accepted or declined the offer."
       ],
       "recommendedStatus": "NEEDS_REVIEW",
-      "analyzedAt": "2026-09-18T11:22:08.393Z"
+      "analyzedAt": "2026-09-18T13:52:35.920Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -2753,16 +2753,14 @@
     "aiAnalysis": {
       "intent": "QUESTION",
       "confidence": 0.85,
-      "summary": "Aiman Adnan is excited about the internship offer but seeks clarification on several details before accepting the offer. The candidate has specific questions regarding working hours, mode of participation, compensation, responsibilities, and certification.",
+      "summary": "Aiman Adnan expressed gratitude for the internship offer and requested clarification on several details before submitting the signed offer letter. The candidate is eager to join but seeks more information about the program specifics.",
       "keyPoints": [
-        "Expressed excitement about joining the ChangerMaker Program.",
-        "Requested confirmation on working hours and mode of participation.",
-        "Inquired whether the program is paid or unpaid.",
-        "Asked for details about the Brand Ambassador role's responsibilities.",
-        "Sought information on whether a certificate or experience letter will be provided."
+        "Thanked DataCrumbs for the offer.",
+        "Excited about joining the ChangerMaker Program.",
+        "Requested confirmation on working hours, mode of participation, payment status, responsibilities, and certificate provision."
       ],
       "recommendedStatus": "NEEDS_REVIEW",
-      "analyzedAt": "2026-09-18T11:22:10.662Z"
+      "analyzedAt": "2026-09-18T13:52:38.870Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -2818,7 +2816,7 @@
         "Attached the signed offer letter."
       ],
       "recommendedStatus": "ACCEPTED",
-      "analyzedAt": "2026-09-18T11:20:33.940Z"
+      "analyzedAt": "2026-09-18T13:51:10.117Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -2879,15 +2877,15 @@
     "aiAnalysis": {
       "intent": "ACCEPTED",
       "confidence": 0.95,
-      "summary": "Neeha Feroz has accepted the internship offer for the ChangerMaker Program and has attached the signed offer letter as confirmation. She expresses excitement about joining the program and contributing to the team.",
+      "summary": "Neeha Feroz has accepted the internship offer for the ChangerMaker Program and has attached the signed offer letter as confirmation. She expresses excitement about joining the program and contributing as a Brand Ambassador.",
       "keyPoints": [
         "Candidate accepted the internship offer.",
-        "Signed offer letter is attached.",
-        "Excited to join as a Brand Ambassador.",
-        "Program starts on September 21, 2026."
+        "Participation in the ChangerMaker Program as a Brand Ambassador.",
+        "Signed offer letter attached to the email.",
+        "Looking forward to starting on September 21, 2026."
       ],
       "recommendedStatus": "ACCEPTED",
-      "analyzedAt": "2026-09-18T11:22:46.261Z"
+      "analyzedAt": "2026-09-18T13:52:58.129Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -2912,14 +2910,13 @@
     "aiAnalysis": {
       "intent": "ACCEPTED",
       "confidence": 0.95,
-      "summary": "Mahnoor Asim expressed gratitude and excitement about the internship position offered by DataCrumbs. The response indicates a positive acceptance of the offer.",
+      "summary": "Mahnoor Asim expressed gratitude and excitement about the internship position offered by DataCrumbs. The response indicates a positive reception of the offer.",
       "keyPoints": [
-        "Candidate is grateful for the offer.",
-        "Candidate is excited to work in the ChangerMaker Program.",
-        "No questions or concerns were raised in the response."
+        "Candidate thanked the company for the offer.",
+        "Candidate expressed excitement about the position."
       ],
       "recommendedStatus": "ACCEPTED",
-      "analyzedAt": "2026-09-18T11:21:38.449Z"
+      "analyzedAt": "2026-09-18T13:52:19.845Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -3226,14 +3223,13 @@
     "aiAnalysis": {
       "intent": "UNCERTAIN",
       "confidence": 0.3,
-      "summary": "The candidate has not explicitly accepted or declined the offer in their email response. There is a lack of clear communication regarding their decision.",
+      "summary": "The candidate has not explicitly accepted or declined the offer, and there is no clear indication of their intent in the email response provided.",
       "keyPoints": [
-        "No explicit acceptance or decline of the offer.",
-        "Candidate may need more time to review the offer letter.",
-        "No questions or concerns were raised in the response."
+        "The candidate received an offer for the ChangerMaker Program.",
+        "The email does not contain a clear acceptance or decline of the offer."
       ],
       "recommendedStatus": "NEEDS_REVIEW",
-      "analyzedAt": "2026-09-18T11:20:22.530Z"
+      "analyzedAt": "2026-09-18T13:50:57.535Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -3376,15 +3372,15 @@
     "emailReply": "On Wed, Sep 16, 2026, 7:03 PM DataCrumbs <careers@datacrumbs.org> wrote:\r\n\r\n> 📄 ChangerMaker Program Offer – Saira\r\n>\r\n> We are pleased to offer you a position in our *ChangerMaker Program* with\r\n> *DataCrumbs*.\r\n>\r\n> Attached to this email is your official *Offer Letter*. It outlines the\r\n> program duration, responsibilities, and start date.\r\n>\r\n> Kindly review the document thoroughly and *sign and return the offer\r\n> letter* to this email address by the stated deadline to confirm your\r\n> participation.\r\n> ------------------------------\r\n> Next Steps:\r\n>\r\n>    1. Download and review the attached offer letter carefully.\r\n>    2. Sign the offer letter digitally or manually.\r\n>    3. Reply to this email with the signed offer letter attached (PDF or\r\n>    image format).\r\n>    4. Ensure you submit the signed letter before *your start date:\r\n>    September 21, 2026*.\r\n>\r\n> We are excited to welcome you aboard and look forward to working with you.\r\n>\r\n> If you have any questions, feel free to reach out directly by replying to\r\n> this email.\r\n>\r\n> Warm regards,\r\n> *Team DataCrumbs*\r\n> Empowering Future Innovators\r\n>\r\n",
     "aiAnalysis": {
       "intent": "UNCERTAIN",
-      "confidence": 0.4,
-      "summary": "The candidate has not yet responded to the offer letter, leaving their acceptance status unclear. There is no indication of acceptance or decline in the provided email content.",
+      "confidence": 0.3,
+      "summary": "The candidate has not explicitly accepted or declined the offer and may have questions regarding the next steps. There is no clear indication of their decision.",
       "keyPoints": [
-        "The candidate received an offer for the ChangerMaker Program.",
-        "The email outlines the next steps for accepting the offer.",
-        "No response from the candidate is included in the provided content."
+        "Candidate received the offer letter.",
+        "No explicit acceptance or decline stated.",
+        "Potential questions or need for clarification implied."
       ],
       "recommendedStatus": "NEEDS_REVIEW",
-      "analyzedAt": "2026-09-18T11:22:39.576Z"
+      "analyzedAt": "2026-09-18T13:52:52.037Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -3467,15 +3463,15 @@
     "emailReply": "On Wed, Sep 16, 2026, 7:02 PM DataCrumbs <careers@datacrumbs.org> wrote:\r\n\r\n> 📄 ChangerMaker Program Offer – Sameen Fatima\r\n>\r\n> We are pleased to offer you a position in our *ChangerMaker Program* with\r\n> *DataCrumbs*.\r\n>\r\n> Attached to this email is your official *Offer Letter*. It outlines the\r\n> program duration, responsibilities, and start date.\r\n>\r\n> Kindly review the document thoroughly and *sign and return the offer\r\n> letter* to this email address by the stated deadline to confirm your\r\n> participation.\r\n> ------------------------------\r\n> Next Steps:\r\n>\r\n>    1. Download and review the attached offer letter carefully.\r\n>    2. Sign the offer letter digitally or manually.\r\n>    3. Reply to this email with the signed offer letter attached (PDF or\r\n>    image format).\r\n>    4. Ensure you submit the signed letter before *your start date:\r\n>    September 21, 2026*.\r\n>\r\n> We are excited to welcome you aboard and look forward to working with you.\r\n>\r\n> If you have any questions, feel free to reach out directly by replying to\r\n> this email.\r\n>\r\n> Warm regards,\r\n> *Team DataCrumbs*\r\n> Empowering Future Innovators\r\n>\r\n",
     "aiAnalysis": {
       "intent": "UNCERTAIN",
-      "confidence": 0.3,
-      "summary": "The candidate has not yet responded to the offer letter, and there is no indication of acceptance or decline in the provided content. The email is an offer letter from DataCrumbs.",
+      "confidence": 0.6,
+      "summary": "The candidate has not explicitly accepted or declined the offer, and there is no clear indication of their intent in the provided email response. They may need more time to review the offer letter.",
       "keyPoints": [
-        "Candidate received an internship offer from DataCrumbs.",
-        "The offer letter includes details about the program duration, responsibilities, and start date.",
-        "The candidate is required to sign and return the offer letter by September 21, 2026."
+        "Candidate received the offer letter from DataCrumbs.",
+        "No explicit acceptance or decline of the offer is stated.",
+        "Candidate may require additional time to review the offer."
       ],
       "recommendedStatus": "NEEDS_REVIEW",
-      "analyzedAt": "2026-09-18T11:21:54.822Z"
+      "analyzedAt": "2026-09-18T13:52:23.795Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -3822,18 +3818,18 @@
     "status": "ACCEPTED",
     "offerSentDate": "2026-09-15",
     "id": "cand-1789655026605-mxtss",
-    "emailReply": "I have accepted the offer.\r\n\r\n\r\nThank You,\r\nRegards,\r\nMuhammad Uzair Aslam\r\n\r\n\r\nOn Wed, 16 Sept 2026, 18:54 DataCrumbs, <careers@datacrumbs.org> wrote:\r\n\r\n> 📄 ChangerMaker Program Offer – Muhammad Uzair Aslam\r\n>\r\n> We are pleased to offer you a position in our *ChangerMaker Program* with\r\n> *DataCrumbs*.\r\n>\r\n> Attached to this email is your official *Offer Letter*. It outlines the\r\n> program duration, responsibilities, and start date.\r\n>\r\n> Kindly review the document thoroughly and *sign and return the offer\r\n> letter* to this email address by the stated deadline to confirm your\r\n> participation.\r\n> ------------------------------\r\n> Next Steps:\r\n>\r\n>    1. Download and review the attached offer letter carefully.\r\n>    2. Sign the offer letter digitally or manually.\r\n>    3. Reply to this email with the signed offer letter attached (PDF or\r\n>    image format).\r\n>    4. Ensure you submit the signed letter before *your start date:\r\n>    September 21, 2026*.\r\n>\r\n> We are excited to welcome you aboard and look forward to working with you.\r\n>\r\n> If you have any questions, feel free to reach out directly by replying to\r\n> this email.\r\n>\r\n> Warm regards,\r\n> *Team DataCrumbs*\r\n> Empowering Future Innovators\r\n>\r\n",
+    "emailReply": " 1000106000.heic\r\n<https://drive.google.com/open?id=1VmKNb4dfiAE4iUkR9YBF8w1UTQGBj8hE>\r\nRegards,\r\nMuhammad Uzair Aslam\r\n\r\nOn Thu, Sep 17, 2026 at 10:32 AM muzair aslam <muzairaslam001@gmail.com>\r\nwrote:\r\n\r\n>\r\n> I have accepted the offer.\r\n>\r\n>\r\n> Thank You,\r\n> Regards,\r\n> Muhammad Uzair Aslam\r\n>\r\n>\r\n> On Wed, 16 Sept 2026, 18:54 DataCrumbs, <careers@datacrumbs.org> wrote:\r\n>\r\n>> 📄 ChangerMaker Program Offer – Muhammad Uzair Aslam\r\n>>\r\n>> We are pleased to offer you a position in our *ChangerMaker Program*\r\n>> with *DataCrumbs*.\r\n>>\r\n>> Attached to this email is your official *Offer Letter*. It outlines the\r\n>> program duration, responsibilities, and start date.\r\n>>\r\n>> Kindly review the document thoroughly and *sign and return the offer\r\n>> letter* to this email address by the stated deadline to confirm your\r\n>> participation.\r\n>> ------------------------------\r\n>> Next Steps:\r\n>>\r\n>>    1. Download and review the attached offer letter carefully.\r\n>>    2. Sign the offer letter digitally or manually.\r\n>>    3. Reply to this email with the signed offer letter attached (PDF or\r\n>>    image format).\r\n>>    4. Ensure you submit the signed letter before *your start date:\r\n>>    September 21, 2026*.\r\n>>\r\n>> We are excited to welcome you aboard and look forward to working with\r\n>> you.\r\n>>\r\n>> If you have any questions, feel free to reach out directly by replying to\r\n>> this email.\r\n>>\r\n>> Warm regards,\r\n>> *Team DataCrumbs*\r\n>> Empowering Future Innovators\r\n>>\r\n>\r\n",
     "aiAnalysis": {
       "intent": "ACCEPTED",
       "confidence": 0.95,
-      "summary": "The candidate, Muhammad Uzair Aslam, has accepted the internship offer from DataCrumbs. He expressed gratitude in his response.",
+      "summary": "Muhammad Uzair Aslam has accepted the internship offer from DataCrumbs and expressed gratitude in his email response.",
       "keyPoints": [
         "Candidate accepted the offer.",
-        "Response includes a thank you note.",
-        "No questions or uncertainties were raised."
+        "Email response includes a thank you note.",
+        "Candidate's name is Muhammad Uzair Aslam."
       ],
       "recommendedStatus": "ACCEPTED",
-      "analyzedAt": "2026-09-18T11:24:14.605Z"
+      "analyzedAt": "2026-09-18T13:52:02.938Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -3988,14 +3984,13 @@
     "aiAnalysis": {
       "intent": "ACCEPTED",
       "confidence": 0.95,
-      "summary": "The candidate, Anabia Afaq, has accepted the internship offer from DataCrumbs. They confirmed their acceptance in a straightforward manner.",
+      "summary": "The candidate, Anabia Afaq, has accepted the internship offer from DataCrumbs. They have confirmed their acceptance in a straightforward manner.",
       "keyPoints": [
-        "Candidate accepted the offer.",
-        "No questions or concerns were raised.",
-        "Response is clear and direct."
+        "Candidate accepted the internship offer.",
+        "No questions or concerns were raised in the response."
       ],
       "recommendedStatus": "ACCEPTED",
-      "analyzedAt": "2026-09-18T11:18:54.171Z"
+      "analyzedAt": "2026-09-18T13:49:33.264Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -4070,13 +4065,13 @@
     "aiAnalysis": {
       "intent": "ACCEPTED",
       "confidence": 0.95,
-      "summary": "Aafia Uzair expressed gratitude for the opportunity and confirmed her readiness to accept the internship offer.",
+      "summary": "Aafia Uzair expressed gratitude for the internship opportunity and confirmed her readiness to accept the offer.",
       "keyPoints": [
-        "Candidate thanked the company for the opportunity.",
+        "Candidate thanked the employer for the opportunity.",
         "Candidate is ready to accept the offer."
       ],
       "recommendedStatus": "ACCEPTED",
-      "analyzedAt": "2026-09-18T11:19:02.273Z"
+      "analyzedAt": "2026-09-18T13:49:41.514Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -4183,13 +4178,13 @@
     "aiAnalysis": {
       "intent": "ACCEPTED",
       "confidence": 0.95,
-      "summary": "The candidate, Muhammad Rohail Qureshi, has accepted the internship offer from DataCrumbs. He did not provide any additional questions or comments in his response.",
+      "summary": "The candidate, Muhammad Rohail Qureshi, has accepted the internship offer from DataCrumbs. He did not provide additional comments or questions in his response.",
       "keyPoints": [
         "Candidate accepted the internship offer.",
         "No questions or concerns were raised in the response."
       ],
       "recommendedStatus": "ACCEPTED",
-      "analyzedAt": "2026-09-18T11:22:37.019Z"
+      "analyzedAt": "2026-09-18T13:52:49.598Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -4346,14 +4341,14 @@
     "aiAnalysis": {
       "intent": "QUESTION",
       "confidence": 0.85,
-      "summary": "The candidate is seeking clarification regarding the nature of the internship, specifically whether it is online or in-person, as well as the timings and location. They have not yet accepted or declined the offer.",
+      "summary": "The candidate, Amna Amir, is seeking clarification regarding the nature of the internship and its logistics. She inquires whether the internship is online or in-person, as well as the timings and location.",
       "keyPoints": [
-        "Candidate thanked for the internship offer.",
+        "Thanked for the internship offer.",
         "Inquired if the internship is online or requires physical presence.",
         "Requested information about the timings and location of the internship."
       ],
       "recommendedStatus": "NEEDS_REVIEW",
-      "analyzedAt": "2026-09-18T11:22:48.413Z"
+      "analyzedAt": "2026-09-18T13:53:00.477Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -4396,14 +4391,14 @@
     "aiAnalysis": {
       "intent": "ACCEPTED",
       "confidence": 0.95,
-      "summary": "The candidate, Mohammad Kumail Asghar, has accepted the internship offer and attached the signed offer letter as requested.",
+      "summary": "Mohammad Kumail Asghar has accepted the internship offer and attached the signed offer letter as requested.",
       "keyPoints": [
         "Candidate thanked the employer for the offer.",
         "Signed offer letter is attached to the email.",
-        "Response indicates acceptance of the position."
+        "Response is in accordance with the instructions provided."
       ],
       "recommendedStatus": "ACCEPTED",
-      "analyzedAt": "2026-09-18T11:22:16.425Z"
+      "analyzedAt": "2026-09-18T13:52:42.460Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -4439,12 +4434,13 @@
       "confidence": 0.95,
       "summary": "Agha Hassan Mavia has accepted the internship offer for the ChangerMaker Program at DataCrumbs and has attached the signed offer letter for confirmation.",
       "keyPoints": [
-        "Candidate accepted the ChangerMaker Program offer.",
-        "Signed offer letter is attached.",
-        "Expressed eagerness for the experience and learning journey."
+        "Candidate expressed gratitude for the opportunity.",
+        "Candidate confirmed acceptance of the ChangerMaker Program.",
+        "Signed offer letter is attached for confirmation.",
+        "Candidate is looking forward to the experience and learning journey."
       ],
       "recommendedStatus": "ACCEPTED",
-      "analyzedAt": "2026-09-18T11:22:35.355Z"
+      "analyzedAt": "2026-09-18T13:52:47.288Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -4985,14 +4981,15 @@
     "aiAnalysis": {
       "intent": "ACCEPTED",
       "confidence": 0.95,
-      "summary": "The candidate, Muhammad Anas, has accepted the internship offer and attached the signed offer letter as requested. He expresses eagerness to join the program on the specified start date.",
+      "summary": "The candidate, Muhammad Anas, has accepted the internship offer and attached the signed offer letter as requested. He expresses enthusiasm about joining the program on the specified start date.",
       "keyPoints": [
         "Candidate thanked DataCrumbs for the internship offer.",
         "Signed offer letter is attached to the email.",
-        "Candidate looks forward to starting on September 21, 2026."
+        "Candidate confirmed the start date as September 21, 2026.",
+        "Expressed eagerness to contribute to the team."
       ],
       "recommendedStatus": "ACCEPTED",
-      "analyzedAt": "2026-09-18T11:19:15.722Z"
+      "analyzedAt": "2026-09-18T13:49:56.185Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -5144,14 +5141,14 @@
     "aiAnalysis": {
       "intent": "ACCEPTED",
       "confidence": 0.95,
-      "summary": "Aiman Majeed has accepted the internship offer from DataCrumbs. The response is brief and confirms acceptance without any additional questions or concerns.",
+      "summary": "The candidate, Aiman Majeed, has accepted the internship offer from DataCrumbs. They expressed gratitude in their response.",
       "keyPoints": [
         "Candidate accepted the offer.",
-        "Response was concise and direct.",
+        "Response included a thank you note.",
         "No questions or concerns were raised."
       ],
       "recommendedStatus": "ACCEPTED",
-      "analyzedAt": "2026-09-18T11:19:20.541Z"
+      "analyzedAt": "2026-09-18T13:49:59.153Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -5276,7 +5273,7 @@
     "emailReply": "*Assalamualaikum, thank you for selecting me for the DataCrumbs\r\nChangerMaker Program. I have reviewed the offer letter and I’m excited\r\nabout the opportunity. Before signing and submitting the offer letter, I\r\njust wanted to clarify a few details:*\r\n\r\n   1. What will be my *daily/weekly working hours*?\r\n   2. What specific *tasks and responsibilities* will I have as a Brand\r\n   Ambassador?\r\n   3. Is this program *paid or unpaid*? If paid, what is the\r\n   *stipend/payment*?\r\n   4. Will there be any *weekly/monthly targets*, such as bringing\r\n   participants, promoting posts, or arranging events?\r\n   5. Will the training and activities be *online, physical, or hybrid*?\r\n   6. How will the *6-week program* be structured? Will there be regular\r\n   classes, meetings, or assignments?\r\n   7. Will I receive a *certificate or experience letter* after\r\n   successfully completing the program?\r\n   8. Are there any *additional terms or commitments* that I should know\r\n   about before signing?\r\n\r\n*Thank you. I’ll submit the signed offer letter after these details are\r\nclarified.*\r\n\r\nOn Wed, Sep 16, 2026 at 5:44 PM DataCrumbs <careers@datacrumbs.org> wrote:\r\n\r\n> 📄 ChangerMaker Program Offer – Muteeba jamil\r\n>\r\n> We are pleased to offer you a position in our *ChangerMaker Program* with\r\n> *DataCrumbs*.\r\n>\r\n> Attached to this email is your official *Offer Letter*. It outlines the\r\n> program duration, responsibilities, and start date.\r\n>\r\n> Kindly review the document thoroughly and *sign and return the offer\r\n> letter* to this email address by the stated deadline to confirm your\r\n> participation.\r\n> ------------------------------\r\n> Next Steps:\r\n>\r\n>    1. Download and review the attached offer letter carefully.\r\n>    2. Sign the offer letter digitally or manually.\r\n>    3. Reply to this email with the signed offer letter attached (PDF or\r\n>    image format).\r\n>    4. Ensure you submit the signed letter before *your start date:\r\n>    September 21, 2026*.\r\n>\r\n> We are excited to welcome you aboard and look forward to working with you.\r\n>\r\n> If you have any questions, feel free to reach out directly by replying to\r\n> this email.\r\n>\r\n> Warm regards,\r\n> *Team DataCrumbs*\r\n> Empowering Future Innovators\r\n>\r\n",
     "aiAnalysis": {
       "intent": "QUESTION",
-      "confidence": 0.95,
+      "confidence": 0.85,
       "summary": "Muteeba Jamil is excited about the internship offer but seeks clarification on several details before signing the offer letter. She has outlined specific questions regarding working hours, responsibilities, payment, targets, training format, program structure, certification, and additional commitments.",
       "keyPoints": [
         "Candidate is excited about the opportunity.",
@@ -5285,12 +5282,12 @@
         "Questions if the program is paid or unpaid and requests stipend details.",
         "Asks about weekly/monthly targets.",
         "Wants to know the format of training and activities.",
-        "Requests information on the structure of the 6-week program.",
+        "Requests information on program structure.",
         "Inquires about receiving a certificate or experience letter.",
-        "Seeks information on any additional terms or commitments."
+        "Seeks information on additional terms or commitments."
       ],
       "recommendedStatus": "NEEDS_REVIEW",
-      "analyzedAt": "2026-09-18T11:19:47.287Z"
+      "analyzedAt": "2026-09-18T13:50:30.401Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -5439,14 +5436,14 @@
     "aiAnalysis": {
       "intent": "ACCEPTED",
       "confidence": 0.95,
-      "summary": "The candidate has digitally signed and returned the internship offer letter, expressing gratitude for the opportunity and eagerness to join the program.",
+      "summary": "The candidate has digitally signed the internship offer letter and submitted it for records, expressing gratitude for the opportunity and eagerness to join the program.",
       "keyPoints": [
-        "Candidate attached the digitally signed Internship Offer Letter.",
+        "Candidate submitted the signed internship offer letter.",
         "Expressed gratitude for the opportunity.",
         "Looks forward to joining the internship program."
       ],
       "recommendedStatus": "ACCEPTED",
-      "analyzedAt": "2026-09-18T11:18:58.158Z"
+      "analyzedAt": "2026-09-18T13:49:37.480Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -5627,15 +5624,14 @@
     "aiAnalysis": {
       "intent": "ACCEPTED",
       "confidence": 0.95,
-      "summary": "Noor Ul Haq has accepted the internship offer and confirmed participation in the program by sending the signed offer letter. They express enthusiasm about joining the program.",
+      "summary": "Noor Ul Haq has accepted the internship offer and confirmed participation in the program. The signed offer letter is attached to the email.",
       "keyPoints": [
-        "Candidate accepted the internship offer.",
+        "Candidate expressed gratitude for the opportunity.",
         "Signed offer letter is attached.",
-        "Participation in the program starts on September 21, 2026.",
-        "Candidate expresses eagerness to join the program."
+        "Participation in the program starts on September 21, 2026."
       ],
       "recommendedStatus": "ACCEPTED",
-      "analyzedAt": "2026-09-18T11:20:18.831Z"
+      "analyzedAt": "2026-09-18T13:50:54.601Z"
     },
     "responseDate": "2026-09-18"
   },
@@ -6238,21 +6234,21 @@
     "email": "mehaksabir2004@gmail.com",
     "domain": "ChangerMaker (Brand Ambassador)",
     "university": "University of Mianwali",
-    "status": "ACCEPTED",
+    "status": "NEEDS_REVIEW",
     "offerSentDate": "2026-09-15",
     "id": "cand-1789655020215-a43ez",
-    "emailReply": "Accepted: DataCrumbs ChangerMaker Program Offer - Mehak Sabir\r\nDear DataCrumbs Team,\r\n\r\nThank you so much for this wonderful opportunity! I am thrilled to accept\r\nthe offer for the ChangerMaker Program and look forward to joining as a\r\nBrand Ambassador starting September 21, 2026.\r\n\r\n Kindly let me know the further procedure, onboarding steps, or any\r\nadditional documents required from my end.\r\n\r\nBest regards,\r\nMehak Sabir\r\n\r\n\r\n\r\nOn Thu, Sep 17, 2026 at 2:48 PM Mehak Sabir <mehaksabir2004@gmail.com>\r\nwrote:\r\n\r\n> Thank you for your offer.\r\n>\r\n> On Wed, Sep 16, 2026, 5:09 PM DataCrumbs <careers@datacrumbs.org> wrote:\r\n>\r\n>> 📄 ChangerMaker Program Offer – Mehak Sabir\r\n>>\r\n>> We are pleased to offer you a position in our *ChangerMaker Program*\r\n>> with *DataCrumbs*.\r\n>>\r\n>> Attached to this email is your official *Offer Letter*. It outlines the\r\n>> program duration, responsibilities, and start date.\r\n>>\r\n>> Kindly review the document thoroughly and *sign and return the offer\r\n>> letter* to this email address by the stated deadline to confirm your\r\n>> participation.\r\n>> ------------------------------\r\n>> Next Steps:\r\n>>\r\n>>    1. Download and review the attached offer letter carefully.\r\n>>    2. Sign the offer letter digitally or manually.\r\n>>    3. Reply to this email with the signed offer letter attached (PDF or\r\n>>    image format).\r\n>>    4. Ensure you submit the signed letter before *your start date:\r\n>>    September 21, 2026*.\r\n>>\r\n>> We are excited to welcome you aboard and look forward to working with\r\n>> you.\r\n>>\r\n>> If you have any questions, feel free to reach out directly by replying to\r\n>> this email.\r\n>>\r\n>> Warm regards,\r\n>> *Team DataCrumbs*\r\n>> Empowering Future Innovators\r\n>>\r\n>\r\n",
+    "emailReply": "Thank you for your offer.\r\n\r\nOn Wed, Sep 16, 2026, 5:09 PM DataCrumbs <careers@datacrumbs.org> wrote:\r\n\r\n> 📄 ChangerMaker Program Offer – Mehak Sabir\r\n>\r\n> We are pleased to offer you a position in our *ChangerMaker Program* with\r\n> *DataCrumbs*.\r\n>\r\n> Attached to this email is your official *Offer Letter*. It outlines the\r\n> program duration, responsibilities, and start date.\r\n>\r\n> Kindly review the document thoroughly and *sign and return the offer\r\n> letter* to this email address by the stated deadline to confirm your\r\n> participation.\r\n> ------------------------------\r\n> Next Steps:\r\n>\r\n>    1. Download and review the attached offer letter carefully.\r\n>    2. Sign the offer letter digitally or manually.\r\n>    3. Reply to this email with the signed offer letter attached (PDF or\r\n>    image format).\r\n>    4. Ensure you submit the signed letter before *your start date:\r\n>    September 21, 2026*.\r\n>\r\n> We are excited to welcome you aboard and look forward to working with you.\r\n>\r\n> If you have any questions, feel free to reach out directly by replying to\r\n> this email.\r\n>\r\n> Warm regards,\r\n> *Team DataCrumbs*\r\n> Empowering Future Innovators\r\n>\r\n",
     "aiAnalysis": {
-      "intent": "ACCEPTED",
-      "confidence": 0.95,
-      "summary": "Mehak Sabir has accepted the internship offer for the ChangerMaker Program and is eager to know the next steps for onboarding. She expresses gratitude for the opportunity.",
+      "intent": "UNCERTAIN",
+      "confidence": 0.7,
+      "summary": "Mehak Sabir acknowledges the offer but does not explicitly accept or decline it in her response. The email lacks a confirmation of intent regarding the offer.",
       "keyPoints": [
-        "Accepted the offer for the ChangerMaker Program.",
-        "Start date is September 21, 2026.",
-        "Requested information on further procedures and onboarding steps."
+        "Thanked for the offer.",
+        "No explicit acceptance or decline stated.",
+        "Response does not include a signed offer letter."
       ],
-      "recommendedStatus": "ACCEPTED",
-      "analyzedAt": "2026-09-18T13:49:25.730Z"
+      "recommendedStatus": "NEEDS_REVIEW",
+      "analyzedAt": "2026-09-18T13:52:54.176Z"
     },
     "responseDate": "2026-09-18"
   },
