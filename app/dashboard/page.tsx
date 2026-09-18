@@ -648,16 +648,16 @@ export default function DashboardPage() {
       {/* Gemini Email Reply Analyzer Modal */}
       {selectedCandidate && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-          <div className="bg-slate-900 border border-slate-800 rounded-3xl max-w-2xl w-full p-6 shadow-2xl relative overflow-hidden">
+          <div className="bg-slate-900 border border-slate-800 rounded-3xl max-w-3xl w-full p-6 shadow-2xl relative overflow-hidden max-h-[90vh] flex flex-col">
             {/* Modal Header */}
-            <div className="flex items-center justify-between pb-4 border-b border-slate-800">
+            <div className="flex items-center justify-between pb-4 border-b border-slate-800 shrink-0">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-emerald-600/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
                   <Brain className="w-5 h-5" />
                 </div>
                 <div>
                   <h3 className="text-lg font-bold text-white flex items-center gap-2">
-                    OpenAI LLM Reply Analyzer
+                    Candidate Email Reply & Analysis
                   </h3>
                   <p className="text-xs text-slate-400">
                     Candidate: <span className="text-emerald-300 font-semibold">{selectedCandidate.name}</span> ({selectedCandidate.email})
@@ -673,64 +673,27 @@ export default function DashboardPage() {
             </div>
 
             {/* Modal Body */}
-            <div className="mt-5 space-y-5">
-              {/* Input Area */}
+            <div className="mt-5 space-y-5 overflow-y-auto flex-1 pr-1">
+              {/* Input / Display Area */}
               <div>
                 <div className="flex items-center justify-between mb-2">
                   <label className="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
                     <MessageSquare className="w-4 h-4 text-emerald-400" />
                     Candidate Email Reply Content
                   </label>
-                  {!selectedCandidate.emailReply && (
-                    <button
-                      type="button"
-                      onClick={() =>
-                        setEmailText(
-                          `Dear DataCrumbs HR,\nThank you for sending the offer letter for the ${selectedCandidate.domain} Internship! I am very excited to accept the offer and confirm I will join on day one.`
-                        )
-                      }
-                      className="text-[11px] text-emerald-400 hover:underline font-medium"
-                    >
-                      + Insert Sample Acceptance Reply
-                    </button>
-                  )}
                 </div>
                 <textarea
                   value={emailText}
                   onChange={(e) => setEmailText(e.target.value)}
-                  rows={4}
-                  placeholder="Paste or type candidate's reply email here..."
-                  className="w-full bg-slate-950/80 border border-slate-800 rounded-xl p-3.5 text-xs text-slate-100 placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 font-sans"
+                  rows={9}
+                  placeholder="Candidate email reply text..."
+                  className="w-full bg-slate-950/90 border border-slate-800 rounded-2xl p-4 text-sm leading-relaxed text-slate-100 placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 font-sans min-h-[220px]"
                 />
               </div>
 
-              {analysisError && (
-                <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-xs">
-                  {analysisError}
-                </div>
-              )}
-
-              {/* Action Button */}
-              <button
-                onClick={runGeminiAnalysis}
-                disabled={analyzing || !emailText.trim()}
-                className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold py-3 rounded-xl shadow-lg shadow-emerald-900/30 transition-all flex items-center justify-center gap-2 text-xs border border-emerald-500/30 disabled:opacity-50"
-              >
-                {analyzing ? (
-                  <>
-                    <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                    Analyzing with OpenAI LLM...
-                  </>
-                ) : (
-                  <>
-                    <Sparkles className="w-4 h-4" /> Run OpenAI LLM Sentiment & Intent Analysis
-                  </>
-                )}
-              </button>
-
               {/* Gemini Results Display */}
               {selectedCandidate.aiAnalysis && (
-                <div className="mt-4 bg-slate-950/80 border border-slate-800 rounded-2xl p-5 space-y-4">
+                <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-5 space-y-4">
                   <div className="flex items-center justify-between pb-3 border-b border-slate-800">
                     <span className="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
                       <Brain className="w-4 h-4 text-emerald-400" /> AI Classification Analysis
@@ -750,24 +713,10 @@ export default function DashboardPage() {
 
                   <div>
                     <h4 className="text-xs font-medium text-slate-400 mb-1">Executive Summary</h4>
-                    <p className="text-sm font-semibold text-slate-100 bg-slate-900 p-3 rounded-xl border border-slate-800">
+                    <p className="text-sm font-semibold text-slate-100 bg-slate-900 p-3.5 rounded-xl border border-slate-800 leading-relaxed">
                       {selectedCandidate.aiAnalysis.summary}
                     </p>
                   </div>
-
-                  {selectedCandidate.aiAnalysis.keyPoints.length > 0 && (
-                    <div>
-                      <h4 className="text-xs font-medium text-slate-400 mb-2">Extracted Key Details</h4>
-                      <ul className="space-y-1.5 text-xs text-slate-300">
-                        {selectedCandidate.aiAnalysis.keyPoints.map((pt, idx) => (
-                          <li key={idx} className="flex items-center gap-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                            {pt}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
 
                   <div className="pt-2 flex items-center justify-between text-xs text-slate-400 border-t border-slate-800">
                     <span>Recommended Status: <strong className="text-white">{selectedCandidate.aiAnalysis.recommendedStatus}</strong></span>
