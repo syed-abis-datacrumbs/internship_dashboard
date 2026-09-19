@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { Candidate, OfferStatus } from './types';
+import { syncAcceptedCandidateToSheets } from './googleSheets';
 
 const STORE_PATH = path.join(process.cwd(), 'candidates_store.json');
 
@@ -115,6 +116,14 @@ export function updateCandidate(id: string, updates: Partial<Candidate>): Candid
   if (index !== -1) {
     list[index] = { ...list[index], ...updates };
     saveCandidates(list);
+
+    // Trigger Real-Time Google Sheets Sync asynchronously if ACCEPTED
+    if (list[index].status === 'ACCEPTED') {
+      syncAcceptedCandidateToSheets(list[index]).catch((err) =>
+        console.error('Background Google Sheets sync error:', err)
+      );
+    }
+
     return list[index];
   }
   return null;
@@ -128,6 +137,14 @@ export function addCandidate(candidate: Omit<Candidate, 'id'>): Candidate {
   if (existingIndex !== -1) {
     list[existingIndex] = { ...list[existingIndex], ...candidate };
     saveCandidates(list);
+
+    // Trigger Real-Time Google Sheets Sync asynchronously if ACCEPTED
+    if (list[existingIndex].status === 'ACCEPTED') {
+      syncAcceptedCandidateToSheets(list[existingIndex]).catch((err) =>
+        console.error('Background Google Sheets sync error:', err)
+      );
+    }
+
     return list[existingIndex];
   }
 
@@ -137,5 +154,13 @@ export function addCandidate(candidate: Omit<Candidate, 'id'>): Candidate {
   };
   list.unshift(newCand);
   saveCandidates(list);
+
+  // Trigger Real-Time Google Sheets Sync asynchronously if ACCEPTED
+  if (newCand.status === 'ACCEPTED') {
+    syncAcceptedCandidateToSheets(newCand).catch((err) =>
+      console.error('Background Google Sheets sync error:', err)
+    );
+  }
+
   return newCand;
 }
