@@ -153,7 +153,7 @@ export default function DashboardPage() {
       });
       const data = await res.json();
       if (data.success && data.draftResponse) {
-        setDraftText(data.draftResponse);
+        setDraftText(data.draftResponse.replace(/\*\*/g, ''));
       }
     } catch (err) {
       console.error('Error generating AI draft:', err);
@@ -172,12 +172,22 @@ export default function DashboardPage() {
         body: JSON.stringify({
           toEmail: selectedCandidate.email,
           candidateName: selectedCandidate.name,
+          candidateId: selectedCandidate.id,
           subject: `Re: DataCrumbs ChangeMaker Internship Program - ${selectedCandidate.name}`,
           replyText: draftText
         })
       });
       const data = await res.json();
       if (data.success) {
+        const sentDate = data.replySentDate || new Date().toISOString();
+        const updatedCandidate: Candidate = {
+          ...selectedCandidate,
+          replySent: true,
+          replySentDate: sentDate,
+          lastSentDraft: draftText
+        };
+        setSelectedCandidate(updatedCandidate);
+        setCandidates((prev) => prev.map((c) => (c.id === updatedCandidate.id ? updatedCandidate : c)));
         alert(`✅ Reply email sent to ${selectedCandidate.email} (CC: people@datacrumbs.org)!`);
       } else {
         alert(`Failed to send email: ${data.message}`);
@@ -604,7 +614,14 @@ export default function DashboardPage() {
                     >
                       {/* Name & Email */}
                       <td className="py-4 px-5">
-                        <div className="font-bold text-white text-sm">{cand.name}</div>
+                        <div className="flex items-center gap-2">
+                          <span className="font-bold text-white text-sm">{cand.name}</span>
+                          {cand.replySent && (
+                            <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 flex items-center gap-1">
+                              <Check className="w-3 h-3 text-emerald-400" /> Replied
+                            </span>
+                          )}
+                        </div>
                         <div className="text-slate-400 text-xs flex items-center gap-1 mt-0.5 font-mono">
                           {cand.email}
                         </div>
@@ -893,14 +910,22 @@ export default function DashboardPage() {
                     <label className="text-[11px] font-bold text-emerald-400 flex items-center gap-1.5 uppercase tracking-wider">
                       <Sparkles className="w-3.5 h-3.5 text-emerald-400" /> AI RESPONSE DRAFT
                     </label>
-                    <button
-                      onClick={() => handleGenerateDraft(selectedCandidate, draftTone)}
-                      disabled={generatingDraft}
-                      className="text-[11px] text-emerald-400 hover:text-white font-semibold flex items-center gap-1.5 bg-emerald-500/10 hover:bg-emerald-500/20 px-3 py-1.5 rounded-xl border border-emerald-500/30 transition-all"
-                    >
-                      <RefreshCw className={`w-3.5 h-3.5 ${generatingDraft ? 'animate-spin' : ''}`} />
-                      Re-generate Draft
-                    </button>
+                    <div className="flex items-center gap-2">
+                      {selectedCandidate.replySent && (
+                        <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-500/15 text-emerald-400 border border-emerald-500/40 flex items-center gap-1">
+                          <Check className="w-3 h-3 text-emerald-400" />
+                          Email Sent ({selectedCandidate.replySentDate ? new Date(selectedCandidate.replySentDate).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'Sent'})
+                        </span>
+                      )}
+                      <button
+                        onClick={() => handleGenerateDraft(selectedCandidate, draftTone)}
+                        disabled={generatingDraft}
+                        className="text-[11px] text-emerald-400 hover:text-white font-semibold flex items-center gap-1.5 bg-emerald-500/10 hover:bg-emerald-500/20 px-3 py-1.5 rounded-xl border border-emerald-500/30 transition-all"
+                      >
+                        <RefreshCw className={`w-3.5 h-3.5 ${generatingDraft ? 'animate-spin' : ''}`} />
+                        Re-generate Draft
+                      </button>
+                    </div>
                   </div>
 
                   {/* Editor Container */}
@@ -946,12 +971,20 @@ export default function DashboardPage() {
                   <button
                     onClick={handleSendReply}
                     disabled={sendingReply || !draftText.trim()}
-                    className="flex-1 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs py-3 px-4 rounded-2xl shadow-xl shadow-emerald-500/20 border border-emerald-400 flex items-center justify-center gap-2 disabled:opacity-50 transition-all"
+                    className={`flex-1 font-bold text-xs py-3 px-4 rounded-2xl border flex items-center justify-center gap-2 disabled:opacity-50 transition-all ${
+                      selectedCandidate.replySent
+                        ? 'bg-emerald-600/90 hover:bg-emerald-500 text-white border-emerald-400/80 shadow-lg shadow-emerald-500/20'
+                        : 'bg-emerald-500 hover:bg-emerald-400 text-slate-950 border-emerald-400 shadow-xl shadow-emerald-500/20'
+                    }`}
                   >
                     {sendingReply ? (
                       <>
-                        <div className="w-4 h-4 border-2 border-slate-950/30 border-t-slate-950 rounded-full animate-spin" />
+                        <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
                         Sending Email...
+                      </>
+                    ) : selectedCandidate.replySent ? (
+                      <>
+                        <Check className="w-4 h-4 text-white" /> Email Already Sent (Resend?)
                       </>
                     ) : (
                       <>

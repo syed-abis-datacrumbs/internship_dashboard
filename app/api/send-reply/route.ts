@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { getCandidates, updateCandidate } from '@/lib/candidates';
 
 export async function POST(req: NextRequest) {
   try {
-    const { toEmail, candidateName, subject, replyText } = await req.json();
+    const { toEmail, candidateName, candidateId, subject, replyText } = await req.json();
 
     if (!toEmail || !replyText) {
       return NextResponse.json(
@@ -39,7 +40,7 @@ export async function POST(req: NextRequest) {
         from: emailSender,
         to: [toEmail],
         cc: [emailCc],
-        subject: subject || `Re: DataCrumbs ChangeMaker Internship Program - ${candidateName}`,
+        subject: subject || `Re: DataCrumbs ChangeMaker Internship Program - ${candidateName || 'Candidate'}`,
         html: emailHtml
       })
     });
@@ -47,10 +48,26 @@ export async function POST(req: NextRequest) {
     const data = await res.json();
 
     if (res.ok) {
+      const candidates = getCandidates();
+      const cand = candidates.find(
+        (c) => (candidateId && c.id === candidateId) || c.email.toLowerCase() === toEmail.toLowerCase()
+      );
+
+      const nowIso = new Date().toISOString();
+      if (cand) {
+        updateCandidate(cand.id, {
+          replySent: true,
+          replySentDate: nowIso,
+          lastSentDraft: replyText
+        });
+      }
+
       return NextResponse.json({
         success: true,
         message: `Reply email successfully sent to ${toEmail} (CC: ${emailCc})`,
-        resendId: data.id
+        resendId: data.id,
+        replySent: true,
+        replySentDate: nowIso
       });
     } else {
       return NextResponse.json(

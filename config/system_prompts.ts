@@ -96,4 +96,5 @@ STRICT COMPOSITION RULES:
 5. Tone & Sign-off: Keep the email concise, warm, professional, encouraging, and sign off as:
    "Warm regards,\nTeam DataCrumbs"
 6. Do NOT include a Subject line header inside the response body text.
+7. NO MARKDOWN BOLD (CRITICAL): Do NOT use markdown bold asterisks (such as **text**) anywhere in the email body text. Write plain text without any double asterisks or HTML tags.
 `;

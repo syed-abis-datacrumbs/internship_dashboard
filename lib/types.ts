@@ -22,6 +22,9 @@ export interface Candidate {
   reminderSentDate?: string;
   emailReply?: string;
   aiAnalysis?: AIAnalysis;
+  replySent?: boolean;
+  replySentDate?: string;
+  lastSentDraft?: string;
 }
 
 export interface UserSession {
