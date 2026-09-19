@@ -159,8 +159,7 @@ export default function DashboardPage() {
     setSelectedCandidate(cand);
     setEmailText(cand.emailReply || '');
     setAnalysisError('');
-    setDraftText('');
-    handleGenerateDraft(cand, 'auto');
+    setDraftText(cand.lastSentDraft || '');
   };
 
   // Run Gemini LLM analysis
@@ -897,22 +896,48 @@ export default function DashboardPage() {
                       <button
                         onClick={() => handleGenerateDraft(selectedCandidate, draftTone)}
                         disabled={generatingDraft}
-                        className="text-[11px] text-emerald-400 hover:text-white font-semibold flex items-center gap-1.5 bg-emerald-500/10 hover:bg-emerald-500/20 px-3 py-1.5 rounded-xl border border-emerald-500/30 transition-all"
+                        className="text-[11px] text-emerald-400 hover:text-white font-semibold flex items-center gap-1.5 bg-emerald-500/10 hover:bg-emerald-500/20 px-3 py-1.5 rounded-xl border border-emerald-500/30 transition-all disabled:opacity-50"
                       >
                         <RefreshCw className={`w-3.5 h-3.5 ${generatingDraft ? 'animate-spin' : ''}`} />
-                        Re-generate Draft
+                        {draftText ? 'Re-generate Draft' : 'Generate AI Draft'}
                       </button>
                     </div>
                   </div>
 
                   {/* Editor Container */}
-                  <div className="bg-slate-900/90 border border-slate-800/80 rounded-xl p-4 flex-1 flex flex-col justify-between space-y-2 focus-within:border-emerald-500/50 transition-all min-h-0">
-                    <textarea
-                      value={draftText}
-                      onChange={(e) => setDraftText(e.target.value)}
-                      placeholder={generatingDraft ? "OpenAI is drafting response..." : "AI generated response draft..."}
-                      className="w-full flex-1 bg-transparent text-xs text-slate-100 placeholder-slate-600 focus:outline-none font-sans leading-relaxed min-h-[220px] resize-none"
-                    />
+                  <div className="bg-slate-900/90 border border-slate-800/80 rounded-xl p-4 flex-1 flex flex-col justify-between space-y-2 focus-within:border-emerald-500/50 transition-all min-h-[260px]">
+                    {generatingDraft ? (
+                      <div className="flex-1 flex flex-col items-center justify-center py-12 space-y-3 text-emerald-400">
+                        <div className="w-8 h-8 border-2 border-emerald-400 border-t-transparent rounded-full animate-spin" />
+                        <span className="text-xs font-semibold animate-pulse">OpenAI is drafting response...</span>
+                      </div>
+                    ) : !draftText ? (
+                      <div className="flex-1 flex flex-col items-center justify-center text-center p-6 space-y-4 my-auto">
+                        <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shadow-lg shadow-emerald-500/10">
+                          <Sparkles className="w-6 h-6" />
+                        </div>
+                        <div className="space-y-1">
+                          <h4 className="text-xs font-bold text-white uppercase tracking-wider">AI Draft Composer</h4>
+                          <p className="text-[11px] text-slate-400 max-w-xs leading-relaxed">
+                            Click below to let OpenAI analyze the candidate's message and generate a tailored response.
+                          </p>
+                        </div>
+                        <button
+                          onClick={() => handleGenerateDraft(selectedCandidate, draftTone)}
+                          className="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center gap-2 shadow-lg shadow-emerald-500/20 transition-all border border-emerald-400 cursor-pointer"
+                        >
+                          <Sparkles className="w-4 h-4 text-slate-950" />
+                          Generate AI Reply Draft
+                        </button>
+                      </div>
+                    ) : (
+                      <textarea
+                        value={draftText}
+                        onChange={(e) => setDraftText(e.target.value)}
+                        placeholder="AI generated response draft..."
+                        className="w-full flex-1 bg-transparent text-xs text-slate-100 placeholder-slate-600 focus:outline-none font-sans leading-relaxed min-h-[220px] resize-none"
+                      />
+                    )}
 
                     {/* Editor Footer Status Bar */}
                     <div className="flex items-center justify-between pt-2 border-t border-slate-800/60 text-[11px] text-slate-400 font-mono shrink-0">
