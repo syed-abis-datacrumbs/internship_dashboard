@@ -29,11 +29,22 @@ import {
   Wand2
 } from 'lucide-react';
 import { Candidate, OfferStatus } from '@/lib/types';
+import { useCandidates } from '@/context/CandidatesContext';
 
 export default function DashboardPage() {
   const router = useRouter();
-  const [candidates, setCandidates] = useState<Candidate[]>([]);
-  const [loading, setLoading] = useState(true);
+  const {
+    candidates,
+    loading,
+    syncingInbox,
+    batchProcessing,
+    updateCandidateInContext,
+    addCandidateInContext,
+    handleSyncInbox,
+    handleBatchAnalyze,
+    refreshCandidates
+  } = useCandidates();
+
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('ALL');
   const [domainFilter, setDomainFilter] = useState<string>('ALL');
@@ -46,8 +57,6 @@ export default function DashboardPage() {
   const [emailText, setEmailText] = useState('');
   const [analyzing, setAnalyzing] = useState(false);
   const [analysisError, setAnalysisError] = useState('');
-  const [batchProcessing, setBatchProcessing] = useState(false);
-  const [syncingInbox, setSyncingInbox] = useState(false);
 
   // AI Draft Response States
   const [draftText, setDraftText] = useState('');
@@ -65,67 +74,6 @@ export default function DashboardPage() {
     university: '',
     score: 90
   });
-
-  // Batch Analyze Existing Replies
-  const handleBatchAnalyze = async () => {
-    setBatchProcessing(true);
-    try {
-      const unanalyzed = candidates.filter(
-        (c) => c.emailReply && c.emailReply.trim() && !c.aiAnalysis
-      );
-      for (const cand of unanalyzed) {
-        await fetch('/api/analyze', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ candidateId: cand.id, emailText: cand.emailReply })
-        });
-      }
-      fetchCandidates();
-    } catch (err) {
-      console.error('Batch analysis error', err);
-    } finally {
-      setBatchProcessing(false);
-    }
-  };
-
-  const handleSyncInbox = async () => {
-    setSyncingInbox(true);
-    try {
-      const res = await fetch('/api/sync-inbox', { method: 'POST' });
-      const data = await res.json();
-      if (data.success) {
-        alert('⚡ Titan Inbox POP3 sync completed! Incoming candidate emails imported.');
-        fetchCandidates();
-      } else {
-        alert(`Inbox sync message: ${data.message || 'Unknown error'}`);
-      }
-    } catch (err) {
-      console.error('Error syncing inbox:', err);
-      alert('Failed to run Titan Inbox sync.');
-    } finally {
-      setSyncingInbox(false);
-    }
-  };
-
-  // Fetch candidates from API
-  const fetchCandidates = async () => {
-    setLoading(true);
-    try {
-      const res = await fetch('/api/candidates');
-      const data = await res.json();
-      if (data.success) {
-        setCandidates(data.candidates);
-      }
-    } catch (err) {
-      console.error('Failed to load candidates', err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchCandidates();
-  }, []);
 
   const handleLogout = async () => {
     await fetch('/api/auth/logout', { method: 'POST' });
@@ -187,7 +135,7 @@ export default function DashboardPage() {
           lastSentDraft: draftText
         };
         setSelectedCandidate(updatedCandidate);
-        setCandidates((prev) => prev.map((c) => (c.id === updatedCandidate.id ? updatedCandidate : c)));
+        updateCandidateInContext(selectedCandidate.id, updatedCandidate);
         alert(`✅ Reply email sent to ${selectedCandidate.email} (CC: people@datacrumbs.org)!`);
       } else {
         alert(`Failed to send email: ${data.message}`);
@@ -238,9 +186,7 @@ export default function DashboardPage() {
       const data = await res.json();
 
       if (data.success && data.candidate) {
-        setCandidates((prev) =>
-          prev.map((c) => (c.id === data.candidate.id ? data.candidate : c))
-        );
+        updateCandidateInContext(selectedCandidate.id, data.candidate);
         setSelectedCandidate(data.candidate);
       } else {
         setAnalysisError(data.message || 'Analysis failed');
@@ -263,9 +209,7 @@ export default function DashboardPage() {
 
       const data = await res.json();
       if (data.success && data.candidate) {
-        setCandidates((prev) =>
-          prev.map((c) => (c.id === candidateId ? data.candidate : c))
-        );
+        updateCandidateInContext(candidateId, data.candidate);
         if (selectedCandidate?.id === candidateId) {
           setSelectedCandidate(data.candidate);
         }
@@ -291,7 +235,7 @@ export default function DashboardPage() {
 
       const data = await res.json();
       if (data.success && data.candidate) {
-        setCandidates((prev) => [data.candidate, ...prev]);
+        addCandidateInContext(data.candidate);
         setShowAddModal(false);
         setNewCandidate({
           name: '',
@@ -586,7 +530,7 @@ export default function DashboardPage() {
             </select>
 
             <button
-              onClick={fetchCandidates}
+              onClick={() => refreshCandidates(true)}
               title="Refresh Data"
               className="p-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-200 border border-slate-700/80 transition-all"
             >

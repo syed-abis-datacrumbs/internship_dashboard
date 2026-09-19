@@ -22,11 +22,11 @@ import {
   Users
 } from 'lucide-react';
 import { Candidate } from '@/lib/types';
+import { useCandidates } from '@/context/CandidatesContext';
 
 export default function PendingCandidatesPage() {
   const router = useRouter();
-  const [candidates, setCandidates] = useState<Candidate[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { candidates, loading, updateCandidateInContext, refreshCandidates } = useCandidates();
   const [searchQuery, setSearchQuery] = useState('');
   const [domainFilter, setDomainFilter] = useState<string>('ALL');
 
@@ -38,27 +38,7 @@ export default function PendingCandidatesPage() {
   const [sendingMap, setSendingMap] = useState<Record<string, boolean>>({});
   const [sentMap, setSentMap] = useState<Record<string, boolean>>({});
 
-  const fetchCandidates = async () => {
-    setLoading(true);
-    try {
-      const res = await fetch('/api/candidates');
-      if (res.ok) {
-        const data = await res.json();
-        if (data.success && Array.isArray(data.candidates)) {
-          setCandidates(data.candidates);
-        } else if (Array.isArray(data)) {
-          setCandidates(data);
-        }
-      }
-    } catch (err) {
-      console.error('Failed to load candidate records:', err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
-    fetchCandidates();
     // Load sent reminders from localStorage for persistence across reloads
     try {
       const stored = JSON.parse(localStorage.getItem('sent_reminders') || '{}');
@@ -93,9 +73,7 @@ export default function PendingCandidatesPage() {
       if (data.success) {
         const today = new Date().toISOString().split('T')[0];
         setSentMap((prev) => ({ ...prev, [cand.id]: true }));
-        setCandidates((prev) =>
-          prev.map((c) => (c.id === cand.id ? { ...c, reminderSentDate: today } : c))
-        );
+        updateCandidateInContext(cand.id, { reminderSentDate: today });
 
         // Save to localStorage so it persists even after refreshing the page
         try {
@@ -305,7 +283,7 @@ export default function PendingCandidatesPage() {
             </select>
 
             <button
-              onClick={fetchCandidates}
+              onClick={() => refreshCandidates(true)}
               title="Refresh Pending List"
               className="p-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-200 border border-slate-700/80 transition-all"
             >
