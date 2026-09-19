@@ -1,6 +1,6 @@
 import OpenAI from 'openai';
 import { AIAnalysis, OfferStatus } from './types';
-import { ANALYSIS_SYSTEM_PROMPT, COMPOSER_SYSTEM_PROMPT } from '@/config/system_prompts';
+import { ANALYSIS_SYSTEM_PROMPT, COMPOSER_SYSTEM_PROMPT, PROGRAM_CONFIG } from '@/config/system_prompts';
 
 export async function analyzeEmailReplyWithOpenAI(
   candidateName: string,
@@ -72,7 +72,7 @@ Analyze the response according to system rules and return JSON.
   } else if (isQuestion) {
     intent = 'QUESTION';
     recommendedStatus = 'NEEDS_REVIEW';
-    summary = `Candidate ${candidateName} raised a question regarding offer details or logistics.`;
+    summary = `Candidate ${candidateName} raised questions regarding offer details, stipend, remote mode, or credentials.`;
     keyPoints.push('Inquired about terms/flexibility', 'Requires HR response');
     confidence = 0.88;
   } else {
@@ -84,7 +84,7 @@ Analyze the response according to system rules and return JSON.
   return {
     intent,
     confidence,
-    summary: `${summary} (Analyzed by OpenAI LLM)`,
+    summary: `${summary} (Analyzed by NLP Engine)`,
     keyPoints,
     recommendedStatus,
     analyzedAt: new Date().toISOString()
@@ -132,16 +132,20 @@ Write the email response body following system prompt guidelines and FAQs.
 
       const draft = response.choices[0]?.message?.content?.trim();
       if (draft) return draft;
-    } catch (err) {
-      console.warn('OpenAI draft generation failed, using template fallback:', err);
+    } catch (err: any) {
+      console.warn('OpenAI draft generation failed, using intelligent template fallback:', err?.message || err);
     }
   }
 
-  // Fallback Template Generator
+  // Intelligent Fallback Template Generator (Extracts first name & uses complete program facts)
+  const firstName = candidateName ? candidateName.trim().split(' ')[0] : 'Candidate';
+
   if (tonePreset === 'welcome' || intent === 'ACCEPTED') {
-    return `Dear ${candidateName},
+    return `Dear ${firstName},
 
 Thank you for accepting our offer for the ${domain} Internship (ChangeMaker Program)! We are thrilled to welcome you to Team DataCrumbs.
+
+During this 6-week remote program, you will be working on real-world AI projects and marketing niches under the direct mentorship of our Manager and Senior Manager.
 
 Our team will follow up shortly with your onboarding details and next steps. In the meantime, please feel free to reach out if you have any immediate questions.
 
@@ -150,22 +154,27 @@ We look forward to working with you!
 Warm regards,
 Team DataCrumbs`;
   } else if (tonePreset === 'decline' || intent === 'DECLINED') {
-    return `Dear ${candidateName},
+    return `Dear ${firstName},
 
 Thank you for informing us regarding your decision for the ${domain} Internship.
 
-While we are sorry to miss the opportunity to work together, we truly appreciate your time and interest in DataCrumbs and wish you all the best in your career pursuits.
+While we are sorry to miss the opportunity to work together, we truly appreciate your time and interest in DataCrumbs and wish you all the best in your future endeavors.
 
 Warm regards,
 Team DataCrumbs`;
   } else {
-    return `Dear ${candidateName},
+    // Detailed 5-Point Question Answer Fallback
+    return `Dear ${firstName},
 
-Thank you for your response regarding the ${domain} Internship offer.
+Thank you for your response and interest in the ${domain} Internship (ChangeMaker Program)! We are happy to clarify all your questions below:
 
-To clarify your query: the ChangeMaker Program offers complete remote flexibility, and our tasks can be fully aligned to accommodate your schedule and academic requirements.
+1. Stipend & Compensation: This is an unpaid 6-week learning and project-based internship focused on gaining hands-on experience working on real-world AI projects and marketing niches.
+2. Work Structure & Location: The role is 100% remote with flexible timings to easily manage your university schedule.
+3. Mentorship & Deliverables: You will report directly to our Manager and Senior Manager, who will guide you on your weekly project tasks and deliverables.
+4. Certification & Documentation: Upon successful completion of the 6-week program, you will receive an official Certificate of Completion along with an Experience Letter (plus university/transcript documentation verified if required).
+5. Program Fees: There are absolutely zero fees, deposits, or payments required from your side at any point.
 
-Please let us know if you are ready to confirm your acceptance. We look forward to having you on board!
+Please review the attached offer letter, sign and reply with your signed copy by your start date to confirm your spot. We look forward to having you on board!
 
 Warm regards,
 Team DataCrumbs`;
