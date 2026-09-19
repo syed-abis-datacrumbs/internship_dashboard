@@ -1,5 +1,6 @@
 import OpenAI from 'openai';
 import { AIAnalysis, OfferStatus } from './types';
+import { ANALYSIS_SYSTEM_PROMPT, COMPOSER_SYSTEM_PROMPT } from '@/config/system_prompts';
 
 export async function analyzeEmailReplyWithOpenAI(
   candidateName: string,
@@ -11,30 +12,19 @@ export async function analyzeEmailReplyWithOpenAI(
     try {
       const openai = new OpenAI({ apiKey });
       const prompt = `
-You are an expert HR AI assistant evaluating candidate email replies to internship offer letters.
-
 Candidate Name: ${candidateName}
-Email Response Content:
+Candidate Email Response Content:
 """
 ${emailContent}
 """
 
-Analyze the candidate's email response and provide a JSON response with the following exact keys:
-1. "intent": one of ["ACCEPTED", "DECLINED", "QUESTION", "UNCERTAIN"]
-2. "confidence": float between 0.0 and 1.0 representing your certainty
-3. "summary": 1-2 sentence concise summary of what the candidate said
-4. "keyPoints": array of string bullet points capturing key facts
-5. "recommendedStatus": one of ["ACCEPTED", "DECLINED", "NEEDS_REVIEW"]
-
-Return ONLY raw JSON, with no markdown formatting or triple backticks.
+Analyze the response according to system rules and return JSON.
 `;
 
-      let modelName = 'gpt-4o-mini';
-      
       const response = await openai.chat.completions.create({
-        model: modelName,
+        model: 'gpt-4o-mini',
         messages: [
-          { role: 'system', content: 'You are an HR analytics assistant providing strict JSON output.' },
+          { role: 'system', content: ANALYSIS_SYSTEM_PROMPT },
           { role: 'user', content: prompt }
         ],
         temperature: 0.2,
@@ -116,32 +106,25 @@ export async function generateDraftResponseWithOpenAI(
     try {
       const openai = new OpenAI({ apiKey });
       const prompt = `
-You are an HR Manager for Team DataCrumbs handling candidate communications for the ${domain} Internship Program (ChangeMaker Program).
-
-Candidate Name: ${candidateName}
-Candidate Email: ${candidateEmail}
-Applied Role: ${domain}
-Candidate's Email Reply:
+Candidate Context:
+- Candidate Name: ${candidateName}
+- Candidate Email: ${candidateEmail}
+- Role Applied: ${domain}
+- Email Reply Content:
 """
 ${emailContent}
 """
-AI Extracted Intent: ${intent}
-AI Summary: ${summary}
-Selected Strategy / Tone: ${tonePreset}
+- Detected Intent: ${intent}
+- AI Summary: ${summary}
+- Tone Strategy: ${tonePreset}
 
-Write a professional, warm, encouraging, and clear email response to ${candidateName} from "Team DataCrumbs".
-Key guidelines:
-- If tonePreset is 'welcome' or intent is ACCEPTED: Welcome them aboard warmly, confirm receipt of their confirmation, outline that next steps / onboarding details will follow shortly.
-- If tonePreset is 'answer' or intent is QUESTION: Provide a helpful, clear, and encouraging answer (note: the ChangeMaker program offers fully remote flexibility and task alignment).
-- If tonePreset is 'decline' or intent is DECLINED: Thank them politely for their time and interest, wishing them success in their future endeavors.
-- Keep the email concise (2-4 paragraphs), warm, professional, and signed off as "Warm regards,\nTeam DataCrumbs".
-- Do NOT include a Subject line header inside the response body text.
+Write the email response body following system prompt guidelines and FAQs.
 `;
 
       const response = await openai.chat.completions.create({
         model: 'gpt-4o-mini',
         messages: [
-          { role: 'system', content: 'You are an HR manager writing professional email responses.' },
+          { role: 'system', content: COMPOSER_SYSTEM_PROMPT },
           { role: 'user', content: prompt }
         ],
         temperature: 0.4
