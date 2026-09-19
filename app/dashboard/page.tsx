@@ -312,6 +312,8 @@ export default function DashboardPage() {
   const acceptedOffers = candidates.filter((c) => c.status === 'ACCEPTED').length;
   const declinedOffers = candidates.filter((c) => c.status === 'DECLINED').length;
   const reviewOffers = candidates.filter((c) => c.status === 'NEEDS_REVIEW').length;
+  const pendingReviewOffers = candidates.filter((c) => c.status === 'NEEDS_REVIEW' && !c.replySent).length;
+  const repliedReviewOffers = candidates.filter((c) => c.status === 'NEEDS_REVIEW' && c.replySent).length;
   const pendingOffers = candidates.filter((c) => !c.emailReply || !c.emailReply.trim()).length;
   const acceptanceRate = emailsReceived > 0 ? Math.round((acceptedOffers / emailsReceived) * 100) : 0;
 
@@ -325,7 +327,13 @@ export default function DashboardPage() {
       c.university.toLowerCase().includes(searchQuery.toLowerCase()) ||
       c.domain.toLowerCase().includes(searchQuery.toLowerCase());
 
-    const matchesStatus = statusFilter === 'ALL' || c.status === statusFilter;
+    let matchesStatus = true;
+    if (statusFilter === 'UNREPLIED') {
+      matchesStatus = Boolean(c.emailReply && c.emailReply.trim() && !c.replySent);
+    } else if (statusFilter !== 'ALL') {
+      matchesStatus = c.status === statusFilter;
+    }
+
     const matchesDomain = domainFilter === 'ALL' || c.domain === domainFilter;
 
     return matchesSearch && matchesStatus && matchesDomain;
@@ -509,14 +517,18 @@ export default function DashboardPage() {
               <AlertTriangle className="w-5 h-5 text-amber-400" />
             </div>
             <div className="mt-3 flex items-baseline gap-2">
-              <span className="text-3xl font-extrabold text-amber-400">{reviewOffers}</span>
+              <span className="text-3xl font-extrabold text-amber-400">{pendingReviewOffers}</span>
               <span className="text-xs text-amber-400/80 font-semibold">needs action</span>
             </div>
             <div className="mt-3 w-full bg-slate-950/60 h-1.5 rounded-full overflow-hidden border border-slate-800">
               <div
-                className="bg-amber-500 h-full rounded-full"
-                style={{ width: `${totalOffers ? (reviewOffers / totalOffers) * 100 : 0}%` }}
+                className="bg-amber-500 h-full rounded-full transition-all duration-500"
+                style={{ width: `${totalOffers ? (pendingReviewOffers / totalOffers) * 100 : 0}%` }}
               />
+            </div>
+            <div className="mt-2 flex items-center justify-between text-[11px] text-slate-400 font-mono">
+              <span>{repliedReviewOffers} replied</span>
+              <span>{reviewOffers} total questions</span>
             </div>
           </div>
         </div>
@@ -527,9 +539,10 @@ export default function DashboardPage() {
           <div className="flex items-center gap-1.5 bg-slate-950/70 p-1.5 rounded-xl border border-slate-800/80 w-full md:w-auto overflow-x-auto">
             {[
               { id: 'ALL', label: 'All Candidates' },
+              { id: 'UNREPLIED', label: `Pending Reply (${pendingReviewOffers})` },
               { id: 'ACCEPTED', label: 'Accepted' },
               { id: 'DECLINED', label: 'Declined' },
-              { id: 'NEEDS_REVIEW', label: 'Review Required' },
+              { id: 'NEEDS_REVIEW', label: `Review Required (${reviewOffers})` },
               { id: 'OFFER_SENT', label: 'Offer Sent' }
             ].map((tab) => (
               <button
@@ -708,13 +721,33 @@ export default function DashboardPage() {
 
                       {/* Actions */}
                       <td className="py-4 px-5 text-right">
-                        <button
-                          onClick={() => openAnalyzer(cand)}
-                          className="inline-flex items-center gap-1.5 text-xs font-semibold bg-emerald-600/20 hover:bg-emerald-600 text-emerald-300 hover:text-white border border-emerald-500/30 px-3 py-1.5 rounded-xl transition-all shadow-sm"
-                        >
-                          <Sparkles className="w-3.5 h-3.5" />
-                          {cand.aiAnalysis ? 'View AI Analysis' : 'Analyze Reply'}
-                        </button>
+                        {cand.replySent ? (
+                          <button
+                            onClick={() => openAnalyzer(cand)}
+                            className="inline-flex items-center gap-1.5 text-xs font-semibold bg-slate-800/90 hover:bg-slate-700 text-emerald-400 hover:text-emerald-300 border border-emerald-500/30 px-3.5 py-1.5 rounded-xl transition-all shadow-sm"
+                            title="Email reply sent. Click to view draft & analysis."
+                          >
+                            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                            View Sent Reply
+                          </button>
+                        ) : cand.emailReply ? (
+                          <button
+                            onClick={() => openAnalyzer(cand)}
+                            className="inline-flex items-center gap-1.5 text-xs font-bold bg-amber-500 hover:bg-amber-400 text-slate-950 border border-amber-400 px-3.5 py-1.5 rounded-xl transition-all shadow-lg shadow-amber-500/20"
+                            title="Candidate asked a question or sent a reply. Action needed!"
+                          >
+                            <Sparkles className="w-3.5 h-3.5 text-slate-950" />
+                            Reply Now
+                          </button>
+                        ) : (
+                          <button
+                            onClick={() => openAnalyzer(cand)}
+                            className="inline-flex items-center gap-1.5 text-xs font-semibold bg-slate-800/50 hover:bg-slate-800 text-slate-400 hover:text-slate-200 border border-slate-700/60 px-3.5 py-1.5 rounded-xl transition-all"
+                          >
+                            <Clock className="w-3.5 h-3.5 text-slate-500" />
+                            View Record
+                          </button>
+                        )}
                       </td>
                     </tr>
                   ))}
