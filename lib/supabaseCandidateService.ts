@@ -2,6 +2,10 @@ import { supabase } from './supabaseClient';
 import { Candidate } from './types';
 
 export function mapRowToCandidate(row: any): Candidate {
+  const reminderCount = row.reminder_count !== undefined && row.reminder_count !== null
+    ? row.reminder_count
+    : (row.reminder_sent_date ? 1 : 0);
+
   return {
     id: row.id,
     name: row.name,
@@ -13,6 +17,7 @@ export function mapRowToCandidate(row: any): Candidate {
     offerSentDate: row.offer_sent_date,
     responseDate: row.response_date,
     reminderSentDate: row.reminder_sent_date,
+    reminderCount: reminderCount,
     emailReply: row.email_reply,
     replySent: row.reply_sent,
     replySentDate: row.reply_sent_date,
@@ -33,6 +38,7 @@ export function mapCandidateToRow(cand: Partial<Candidate>): any {
   if (cand.offerSentDate !== undefined) row.offer_sent_date = cand.offerSentDate;
   if (cand.responseDate !== undefined) row.response_date = cand.responseDate;
   if (cand.reminderSentDate !== undefined) row.reminder_sent_date = cand.reminderSentDate;
+  if (cand.reminderCount !== undefined) row.reminder_count = cand.reminderCount;
   if (cand.emailReply !== undefined) row.email_reply = cand.emailReply;
   if (cand.replySent !== undefined) row.reply_sent = cand.replySent;
   if (cand.replySentDate !== undefined) row.reply_sent_date = cand.replySentDate;

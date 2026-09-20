@@ -20,6 +20,7 @@ export interface Candidate {
   offerSentDate: string;
   responseDate?: string;
   reminderSentDate?: string;
+  reminderCount?: number;
   emailReply?: string;
   aiAnalysis?: AIAnalysis;
   replySent?: boolean;

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { updateCandidate } from '@/lib/candidates';
+import { getCandidates, updateCandidate } from '@/lib/candidates';
 
 export async function POST(req: NextRequest) {
   try {
@@ -66,9 +66,14 @@ export async function POST(req: NextRequest) {
 
     // Update candidate store record if candidateId is provided
     if (candidateId) {
+      const existingCandidates = getCandidates();
+      const currentCand = existingCandidates.find((c) => c.id === candidateId || c.email.toLowerCase() === email.toLowerCase());
+      const currentCount = currentCand?.reminderCount !== undefined ? currentCand.reminderCount : (currentCand?.reminderSentDate ? 1 : 0);
+
       updateCandidate(candidateId, {
         email,
-        reminderSentDate: new Date().toISOString().split('T')[0]
+        reminderSentDate: new Date().toISOString().split('T')[0],
+        reminderCount: currentCount + 1
       });
     }
 
