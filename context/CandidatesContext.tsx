@@ -24,9 +24,25 @@ export function CandidatesProvider({ children }: { children: React.ReactNode }) 
   const [batchProcessing, setBatchProcessing] = useState<boolean>(false);
   const [hasLoadedOnce, setHasLoadedOnce] = useState<boolean>(false);
 
+  // Instant hydration from localStorage cache on mount
+  useEffect(() => {
+    try {
+      const cached = localStorage.getItem('cached_candidates_data');
+      if (cached) {
+        const parsed = JSON.parse(cached);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          setCandidates(parsed);
+          setLoading(false);
+          setHasLoadedOnce(true);
+        }
+      }
+    } catch (e) {
+      console.error('Error reading candidates cache:', e);
+    }
+  }, []);
+
   const fetchCandidates = useCallback(async (force = false) => {
-    // Only set loading to true if we haven't loaded candidates once yet
-    if (!hasLoadedOnce && !force) {
+    if (!hasLoadedOnce && !force && candidates.length === 0) {
       setLoading(true);
     }
     try {
@@ -35,26 +51,42 @@ export function CandidatesProvider({ children }: { children: React.ReactNode }) 
       if (data.success && Array.isArray(data.candidates)) {
         setCandidates(data.candidates);
         setHasLoadedOnce(true);
+        // Persist to localStorage for sub-millisecond instant loads on subsequent visits
+        try {
+          localStorage.setItem('cached_candidates_data', JSON.stringify(data.candidates));
+        } catch (e) {
+          console.warn('Could not save candidates to localStorage:', e);
+        }
       }
     } catch (err) {
       console.error('Failed to load candidates:', err);
     } finally {
       setLoading(false);
     }
-  }, [hasLoadedOnce]);
+  }, [hasLoadedOnce, candidates.length]);
 
   useEffect(() => {
     fetchCandidates();
   }, [fetchCandidates]);
 
   const updateCandidateInContext = useCallback((id: string, updates: Partial<Candidate>) => {
-    setCandidates((prev) =>
-      prev.map((cand) => (cand.id === id || cand.email.toLowerCase() === updates.email?.toLowerCase() ? { ...cand, ...updates } : cand))
-    );
+    setCandidates((prev) => {
+      const updatedList = prev.map((cand) => (cand.id === id || cand.email.toLowerCase() === updates.email?.toLowerCase() ? { ...cand, ...updates } : cand));
+      try {
+        localStorage.setItem('cached_candidates_data', JSON.stringify(updatedList));
+      } catch (e) {}
+      return updatedList;
+    });
   }, []);
 
   const addCandidateInContext = useCallback((newCand: Candidate) => {
-    setCandidates((prev) => [newCand, ...prev.filter((c) => c.id !== newCand.id && c.email !== newCand.email)]);
+    setCandidates((prev) => {
+      const updatedList = [newCand, ...prev.filter((c) => c.id !== newCand.id && c.email !== newCand.email)];
+      try {
+        localStorage.setItem('cached_candidates_data', JSON.stringify(updatedList));
+      } catch (e) {}
+      return updatedList;
+    });
   }, []);
 
   const handleSyncInbox = useCallback(async () => {
