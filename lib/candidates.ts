@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { Candidate, OfferStatus } from './types';
 import { syncAcceptedCandidateToSheets } from './googleSheets';
+import { upsertCandidateToSupabase } from './supabaseCandidateService';
 
 const STORE_PATH = path.join(process.cwd(), 'candidates_store.json');
 
@@ -117,6 +118,11 @@ export function updateCandidate(id: string, updates: Partial<Candidate>): Candid
     list[index] = { ...list[index], ...updates };
     saveCandidates(list);
 
+    // Trigger Real-Time Supabase database update
+    upsertCandidateToSupabase(list[index]).catch((err) =>
+      console.error('Background Supabase update error:', err)
+    );
+
     // Trigger Real-Time Google Sheets Sync asynchronously if ACCEPTED
     if (list[index].status === 'ACCEPTED') {
       syncAcceptedCandidateToSheets(list[index]).catch((err) =>
@@ -138,6 +144,11 @@ export function addCandidate(candidate: Omit<Candidate, 'id'>): Candidate {
     list[existingIndex] = { ...list[existingIndex], ...candidate };
     saveCandidates(list);
 
+    // Trigger Real-Time Supabase database update
+    upsertCandidateToSupabase(list[existingIndex]).catch((err) =>
+      console.error('Background Supabase update error:', err)
+    );
+
     // Trigger Real-Time Google Sheets Sync asynchronously if ACCEPTED
     if (list[existingIndex].status === 'ACCEPTED') {
       syncAcceptedCandidateToSheets(list[existingIndex]).catch((err) =>
@@ -154,6 +165,11 @@ export function addCandidate(candidate: Omit<Candidate, 'id'>): Candidate {
   };
   list.unshift(newCand);
   saveCandidates(list);
+
+  // Trigger Real-Time Supabase database update
+  upsertCandidateToSupabase(newCand).catch((err) =>
+    console.error('Background Supabase insert error:', err)
+  );
 
   // Trigger Real-Time Google Sheets Sync asynchronously if ACCEPTED
   if (newCand.status === 'ACCEPTED') {
