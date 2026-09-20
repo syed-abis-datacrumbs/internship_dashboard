@@ -51,7 +51,7 @@ export async function getCandidatesFromSupabase(): Promise<Candidate[] | null> {
   try {
     const { data, error } = await supabase
       .from('candidates')
-      .select('id, name, email, domain, university, score, status, offer_sent_date, response_date, reminder_sent_date, email_reply, reply_sent, reply_sent_date, last_sent_draft, ai_analysis')
+      .select('id, name, email, domain, university, score, status, offer_sent_date, response_date, reminder_sent_date, reply_sent, reply_sent_date')
       .order('id', { ascending: true });
 
     if (error || !data || data.length === 0) {
