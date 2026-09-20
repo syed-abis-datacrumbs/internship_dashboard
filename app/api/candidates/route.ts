@@ -5,11 +5,25 @@ import { getCandidatesFromSupabase, upsertCandidateToSupabase } from '@/lib/supa
 export async function GET() {
   const supabaseCandidates = await getCandidatesFromSupabase();
   if (supabaseCandidates && supabaseCandidates.length > 0) {
-    return NextResponse.json({ success: true, candidates: supabaseCandidates, source: 'supabase' });
+    return NextResponse.json(
+      { success: true, candidates: supabaseCandidates, source: 'supabase' },
+      {
+        headers: {
+          'Cache-Control': 'public, s-maxage=10, stale-while-revalidate=59'
+        }
+      }
+    );
   }
 
   const candidates = getCandidates();
-  return NextResponse.json({ success: true, candidates, source: 'local_store' });
+  return NextResponse.json(
+    { success: true, candidates, source: 'local_store' },
+    {
+      headers: {
+        'Cache-Control': 'public, s-maxage=10, stale-while-revalidate=59'
+      }
+    }
+  );
 }
 
 export async function PATCH(req: NextRequest) {
