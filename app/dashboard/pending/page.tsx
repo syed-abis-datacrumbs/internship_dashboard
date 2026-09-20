@@ -36,19 +36,6 @@ export default function PendingCandidatesPage() {
 
   // Reminder Sending State
   const [sendingMap, setSendingMap] = useState<Record<string, boolean>>({});
-  const [sentMap, setSentMap] = useState<Record<string, boolean>>({});
-
-  useEffect(() => {
-    // Load sent reminders from localStorage for persistence across reloads
-    try {
-      const stored = JSON.parse(localStorage.getItem('sent_reminders') || '{}');
-      if (stored && typeof stored === 'object') {
-        setSentMap(stored);
-      }
-    } catch (e) {
-      console.error('Error reading sent_reminders from localStorage:', e);
-    }
-  }, []);
 
   const handleLogout = async () => {
     await fetch('/api/auth/logout', { method: 'POST' });
@@ -72,17 +59,7 @@ export default function PendingCandidatesPage() {
       const data = await res.json();
       if (data.success) {
         const today = new Date().toISOString().split('T')[0];
-        setSentMap((prev) => ({ ...prev, [cand.id]: true }));
         updateCandidateInContext(cand.id, { reminderSentDate: today });
-
-        // Save to localStorage so it persists even after refreshing the page
-        try {
-          const stored = JSON.parse(localStorage.getItem('sent_reminders') || '{}');
-          stored[cand.id] = true;
-          localStorage.setItem('sent_reminders', JSON.stringify(stored));
-        } catch (e) {
-          console.error('Error saving to localStorage:', e);
-        }
       } else {
         alert(`Failed to send reminder: ${data.message || 'Unknown error'}`);
       }
@@ -355,7 +332,7 @@ export default function PendingCandidatesPage() {
 
                       {/* Action / Send Reminder Button */}
                       <td className="py-4 px-5 text-right">
-                        {sentMap[cand.id] || cand.reminderSentDate ? (
+                        {cand.reminderSentDate ? (
                           <span className="inline-flex items-center gap-1 text-xs font-bold text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-3 py-1 rounded-xl">
                             <CheckCircle2 className="w-3.5 h-3.5" /> Reminder Sent
                           </span>
