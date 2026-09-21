@@ -113,6 +113,8 @@ DataCrumbs HR Team`;
         if (res.ok) {
           const nowIso = new Date().toISOString();
           const updates = {
+            replySent: true,
+            replySentDate: nowIso,
             whatsappSent: true,
             whatsappSentDate: nowIso,
             lastSentDraft: emailText
