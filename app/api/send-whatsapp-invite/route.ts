@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getCandidates, updateCandidate } from '@/lib/candidates';
+import { getCandidatesFromSupabase, upsertCandidateToSupabase } from '@/lib/supabaseCandidateService';
 
 export async function POST(req: NextRequest) {
   try {
@@ -13,10 +14,15 @@ export async function POST(req: NextRequest) {
     }
 
     const resendKey = process.env.RESEND_API_KEY;
-    const emailSender = process.env.EMAIL_USER || 'DataCrumbs <careers@datacrumbs.org>';
-    const emailCc = process.env.CC_USER || 'people@datacrumbs.org';
+    // Explicitly set sender to careers@datacrumbs.org and CC to people@datacrumbs.org
+    const emailSender = 'DataCrumbs <careers@datacrumbs.org>';
+    const emailCc = 'people@datacrumbs.org';
 
-    const allCandidates = getCandidates();
+    let allCandidates = await getCandidatesFromSupabase();
+    if (!allCandidates || allCandidates.length === 0) {
+      allCandidates = getCandidates();
+    }
+
     const targets = allCandidates.filter((c) => candidateIds.includes(c.id));
 
     if (targets.length === 0) {
@@ -106,11 +112,21 @@ DataCrumbs HR Team`;
 
         if (res.ok) {
           const nowIso = new Date().toISOString();
-          updateCandidate(cand.id, {
+          const updates = {
             whatsappSent: true,
             whatsappSentDate: nowIso,
             lastSentDraft: emailText
+          };
+
+          // Update local store
+          updateCandidate(cand.id, updates);
+
+          // Update Supabase production database directly
+          await upsertCandidateToSupabase({
+            ...cand,
+            ...updates
           });
+
           sentTo.push(cand.email);
         } else {
           console.error(`Failed to send email to ${cand.email}:`, data);
@@ -127,8 +143,9 @@ DataCrumbs HR Team`;
       count: sentTo.length,
       sentTo,
       errors,
+      from: emailSender,
       cc: emailCc,
-      message: `Successfully sent WhatsApp onboarding email to ${sentTo.length} candidate(s) (CC: ${emailCc}).`
+      message: `Successfully sent WhatsApp onboarding email to ${sentTo.length} candidate(s) from ${emailSender} (CC: ${emailCc}).`
     });
   } catch (error: any) {
     console.error('Error in send-whatsapp-invite handler:', error);

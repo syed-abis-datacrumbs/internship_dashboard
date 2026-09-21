@@ -6,6 +6,11 @@ export function mapRowToCandidate(row: any): Candidate {
     ? row.reminder_count
     : (row.reminder_sent_date ? 1 : 0);
 
+  const isWhatsappSent = Boolean(
+    row.whatsapp_sent ||
+    (row.last_sent_draft && row.last_sent_draft.includes('WhatsApp'))
+  );
+
   return {
     id: row.id,
     name: row.name,
@@ -22,6 +27,8 @@ export function mapRowToCandidate(row: any): Candidate {
     replySent: row.reply_sent,
     replySentDate: row.reply_sent_date,
     lastSentDraft: row.last_sent_draft,
+    whatsappSent: isWhatsappSent,
+    whatsappSentDate: row.whatsapp_sent_date || (isWhatsappSent ? row.reply_sent_date : undefined),
     aiAnalysis: row.ai_analysis
   };
 }
@@ -43,6 +50,8 @@ export function mapCandidateToRow(cand: Partial<Candidate>): any {
   if (cand.replySent !== undefined) row.reply_sent = cand.replySent;
   if (cand.replySentDate !== undefined) row.reply_sent_date = cand.replySentDate;
   if (cand.lastSentDraft !== undefined) row.last_sent_draft = cand.lastSentDraft;
+  if (cand.whatsappSent !== undefined) row.whatsapp_sent = cand.whatsappSent;
+  if (cand.whatsappSentDate !== undefined) row.whatsapp_sent_date = cand.whatsappSentDate;
   if (cand.aiAnalysis !== undefined) row.ai_analysis = cand.aiAnalysis;
   return row;
 }
@@ -51,7 +60,7 @@ export async function getCandidatesFromSupabase(): Promise<Candidate[] | null> {
   try {
     const { data, error } = await supabase
       .from('candidates')
-      .select('id, name, email, domain, university, score, status, offer_sent_date, response_date, reminder_sent_date, reply_sent, reply_sent_date')
+      .select('*')
       .order('id', { ascending: true });
 
     if (error || !data || data.length === 0) {
