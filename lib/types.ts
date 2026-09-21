@@ -26,6 +26,8 @@ export interface Candidate {
   replySent?: boolean;
   replySentDate?: string;
   lastSentDraft?: string;
+  whatsappSent?: boolean;
+  whatsappSentDate?: string;
 }
 
 export interface UserSession {

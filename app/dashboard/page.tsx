@@ -383,6 +383,13 @@ export default function DashboardPage() {
           >
             <Clock className="w-4 h-4 text-amber-400" /> Awaiting Responses ({pendingOffers})
           </Link>
+
+          <Link
+            href="/dashboard/signed-offers"
+            className="px-4 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-white hover:bg-slate-900 border border-transparent transition-all flex items-center gap-2"
+          >
+            <CheckCircle2 className="w-4 h-4 text-emerald-400" /> Signed Offers & WhatsApp ({acceptedOffers})
+          </Link>
         </div>
 
         {/* KPI Cards Row (Glassmorphic) */}
